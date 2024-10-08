@@ -11,6 +11,7 @@ const fs = require('fs'); //-- fs modul importálása
 const { createServer } = require('http'); //-- http modul importálása
 const server = createServer(app); //-- express alkalmazás létrehozása
 const port = 3000; //-- port szám beállítása
+
 let season = ''; //-- évszak változó deklarálása
 let seasonPage = ''; //-- évszakhoz tartozó oldal változó deklarálása
 let seasonPath = 'public'; //-- évszakhoz tartozó elérési útvonal változó deklarálása
@@ -25,7 +26,6 @@ app.get('/:evszak', (req, res) => {
     season = req.params.evszak;
     seasonPage = season + '.html';
     seasonPath = path.join(__dirname, 'public', seasonPage);
-    console.log(seasonPath);
     if (fs.existsSync(seasonPath)) {
         seasonContent = fs.readFileSync(seasonPath, 'utf8');
         res.send(seasonContent);

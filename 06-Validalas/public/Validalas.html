@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adatellenőrzés - Regisztrációs űrlap</title>
+    <link rel="preload" href="Validalas.css" as="style" />
+    <link rel="stylesheet" href="styles.css">
+    <script src="Validalas.js" defer></script>
+</head>
+
+<body>
+
+    <h2>Regisztrációs űrlap</h2>
+    <form action="http://localhost:3000/reg" id="regForm" enctype="multipart/form-data">
+        <!-- Név -->
+        <label for="name">Teljes név:</label>
+        <input type="text" id="name" name="name" value="Minta Ákos" required>
+        <small>Legalább 5 karakter</small><br>
+        <!-- Jelszó -->
+        <label for="password">Jelszó:</label>
+        <input type="password" id="password" name="password" value="n6m`-R?@KTb*q(Hx}9XZQ" required>
+        <small>A jelszónak tartalmaznia kell kis- és nagybetűt, számjegyet és speciális karaktert.</small><br>
+
+        <!-- Jelszó megerősítése -->
+        <label for="confirmPassword">Jelszó megerősítése:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" value="n6m`-R?@KTb*q(Hx}9XZQ" required>
+        <small>A két jelszónak meg kell egyeznie.</small><br>
+
+
+        <!-- Születési dátum -->
+        <label for="birthdate">Születési dátum:</label>
+        <input type="date" id="birthdate" name="birthdate" value="2000-01-01" required>
+        <small>18 és 100 éves kor között</small><br>
+
+        <!-- Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="valaki@posta.hu" required>
+        <small>A HTML5 email input automatikusan ellenőrzi</small><br>
+
+        <!-- Számlaszám -->
+        <label for="accountNumber">Számlaszám :</label>
+        <input type="text" id="accountNumber" name="accountNumber" value="12345678-12345678-12345678" required>
+        <small>00000000-00000000-00000000 formátumban</small><br>
+
+        <!-- Irányítószám -->
+        <label for="postalCode">Irányítószám:</label>
+        <input type="text" id="postalCode" name="postalCode" min="1000" max="9999" value="4220" required>
+        <small>Pontosan négy számjegy</small><br>
+
+        <!-- Életkor - Numerikus tartomány -->
+        <label for="age">Életkor:</label>
+        <input type="number" id="age" name="age" min="18" max="100" value="20" required>
+        <small>18 és 100 év között</small><br>
+
+        <!-- Kép feltöltése -->
+        <label for="profilePic">Profilkép:</label>
+        <input type="file" id="profilePic" name="profilePic" accept="image/*" required>
+        <small>Csak kép fájlok, 20KB és 2MB közötti méret</small><br>
+
+        <button type="submit">Regisztráció</button>
+    </form>
+
+    <div id="message"></div>
+
+
+</body>
+
+</html>
