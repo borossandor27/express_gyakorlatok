@@ -2,7 +2,7 @@
 const log = require('./logger');
 
 log("Starting the application...");
-// Additional application logic.
+// Kezdődik az alkalmazás logika
 log("Application is running");
-// More application logic.
+// Folytatódik az alkalmazás logika
 log("Application finished execution");
