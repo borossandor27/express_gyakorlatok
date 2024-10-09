@@ -12,6 +12,11 @@ const server = createServer(app); //-- express alkalmazás létrehozása
 const path = require("path"); //-- path modul importálása
 const cors = require("cors"); //-- cors modul importálása
 app.use(cors()); //-- cors middleware beállítása
+//-- CORS kikapcsolása a böngészőben
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    next();
+});
 const fs = require("fs"); //-- fs modul importálása
 const port = 3000; //-- port szám beállítása
 const bodyParser = require("body-parser"); //-- body-parser modul importálása
@@ -42,6 +47,7 @@ app.post("/reg", (req, res) => {
     res.header("Access-Control-Allow-Origin", 'http://localhost:3000');
     console.log(req.body);
     let name = req.body.name;
+    let password = req.body.password;
     let birthdate = req.body.birthdate;
     let email = req.body.email;
     let accountNumber = req.body.accountNumber;
@@ -58,6 +64,7 @@ app.post("/reg", (req, res) => {
     } else {
         user = {
         name: name,
+        password: password,
         birthdate: birthdate,
         email: email,
         accountNumber: accountNumber,
@@ -69,17 +76,20 @@ app.post("/reg", (req, res) => {
     }
 });
 app.post("/login", (req, res) => {
-    res.header("Access-Control-Allow-Origin", 'http://localhost:3000');
     console.log(req.body);
     let email = req.body.email;
     let password = req.body.password;
+    console.log(email, password);
+    console.log(users);
     let user = users.find((user) => user.email === email && user.password === password);
+    console.log(user);
     if (user) {
         res.status(200).json({ message: "Sikeres bejelentkezés!" });
     } else {
         res.status(400).json({ error: "Hibás felhasználónév vagy jelszó!" });
     }
 });
+
 app.listen(port, () => {
   console.log(`Az alkalmazás elindult a http://localhost:${port} címen.`);
 });

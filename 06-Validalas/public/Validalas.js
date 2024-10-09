@@ -87,7 +87,7 @@ async function adatKuldes() {
   let response = await fetch(backEndUrl, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json", // Beállítjuk a megfelelő content-type-ot
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(userDatas), // JSON-ként küldjük el az adatokat
   });

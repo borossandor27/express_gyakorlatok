@@ -18,12 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
       if (errors.length > 0) {
         document.getElementById("error").innerText = errors.join("\n");
       } else {
+        let loginAdatok = new FormData(document.getElementById("loginForm"));
+        
+        let user = Object.fromEntries(loginAdatok.entries());
+        console.log(user);
         fetch(backEndUrl, {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "form-data",
           },
-          body: JSON.stringify({ email: email, password: password }),
+          body: JSON.stringify(user),
         })
           .then((response) => {
             if (response.ok) {
