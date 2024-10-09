@@ -1,11 +1,10 @@
-let backEndUrl = "http://localhost:3000/reg";
+let backEndUrl = "http://localhost:3000";
 document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("regForm")
     .addEventListener("submit", function (event) {
       event.preventDefault(); // Ne küldje el az űrlapot azonnal
       let errors = [];
-
       // Név validálása (minimum 5 karakter)
       let name = document.getElementById("name").value;
       if (name.length < 5) {
@@ -78,25 +77,25 @@ document.addEventListener("DOMContentLoaded", function () {
         adatKuldes();
       }
     });
-});
-async function adatKuldes() {
-  let formData = new FormData(document.getElementById("regForm"));
+  async function adatKuldes() {
+    let formData = new FormData(document.getElementById("regForm"));
+    // A FormData objektumot JSON-né alakítjuk
+    let userDatas = Object.fromEntries(formData.entries()); // .entries() a FormData párokhoz
+    console.log(userDatas);
+    let response = await fetch(backEndUrl + "/reg", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userDatas), // JSON-ként küldjük el az adatokat
+    });
 
-  // A FormData objektumot JSON-né alakítjuk
-  let userDatas = Object.fromEntries(formData.entries()); // .entries() a FormData párokhoz
-  let response = await fetch(backEndUrl, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(userDatas), // JSON-ként küldjük el az adatokat
-  });
-
-  // Kezeld a választ
-  if (response.ok) {
-    alert("Sikeres regisztráció");
-  } else {
-    console.error(response);
-    alert("Hiba történt a regisztráció során");
+    // Kezeld a választ
+    if (response.ok) {
+      alert("Sikeres regisztráció");
+    } else {
+      console.error(response);
+      alert("Hiba történt a regisztráció során");
+    }
   }
-}
+});

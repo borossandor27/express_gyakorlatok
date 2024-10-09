@@ -11,7 +11,15 @@ const { createServer } = require("http"); //-- http modul importálása
 const server = createServer(app); //-- express alkalmazás létrehozása
 const path = require("path"); //-- path modul importálása
 const cors = require("cors"); //-- cors modul importálása
-app.use(cors()); //-- cors middleware beállítása
+app.use(cors({
+    origin: [
+        'http://localhost:5500', 
+        'http://localhost:3000', 
+        'http://localhost:80', 
+        'http://localhost:3000/reg', 
+        'http://localhost:3000/login'],
+  }));
+  
 //-- CORS kikapcsolása a böngészőben
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -44,7 +52,6 @@ app.get("/users", (req, res) => {
     res.send(userContent);
     });
 app.post("/reg", (req, res) => {
-    res.header("Access-Control-Allow-Origin", 'http://localhost:3000');
     console.log(req.body);
     let name = req.body.name;
     let password = req.body.password;
