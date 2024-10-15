@@ -1,5 +1,6 @@
 /*
     Az alkalmazás csak regisztrált felhasználók számára elérhető.
+
     A felhasználók adatait egy JSON fájlban tároljuk.
     Az alkalmazásban a felhasználók adatait a következőképpen lehet lekérdezni:
     GET /users/:id
@@ -32,9 +33,19 @@ app.use(function(req, res, next) {
     console.log("Request Type:", req.method);
     console.log('ip:', req.ip);
     next();
-})
-app.get("/", function(req, res) {
+});
+app.use(function(req, res, next) {
+    //-- felhasználó belépésének ellenőrzése
+    if (req.query.api_key) {
+        next();
+    } else {
+        res.status(401).send("Nem vagy bejelentkezve!");
+    }
+});
+
+app.get("*", function(req, res, next) {
     res.send("GET metódus");
+    next();
 });
 app.get("/users", function(req, res) {
     res.json(users);
@@ -47,10 +58,20 @@ app.get("/users/:id", function(req, res) {
         res.status(404).send(`Nem található felhasználó az id: ${req.params.id} azonosítóval`);
     }
 });
+
 app.post("/users", function(req, res) {
     let user = req.body;
     users.push(user);
     res.status(201).json(user);
+});
+// 404-es hibakezelő middleware
+app.use((req, res, next) => {
+    res.status(404).send('Az oldal nem található!');
+});
+// 500-as hibakezelő middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Valami hiba történt!');
 });
 app.listen(port, function() {
     console.log(`A szerver elindult a http://localhost:${port} címen`);
