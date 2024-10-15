@@ -1,0 +1,142 @@
+[
+    {
+      "id": 1,
+      "fullname": "Augusta Guerre",
+      "password": "265",
+      "username": "user_158",
+      "birthdate": "Nov 26, 1985 8:00 PM"
+    },
+    {
+      "id": 2,
+      "fullname": "Caron Weatherburn",
+      "password": "964",
+      "username": "user_556",
+      "birthdate": "Jan 11, 1971 8:22 AM"
+    },
+    {
+      "id": 3,
+      "fullname": "Garrot Loache",
+      "password": "261",
+      "username": "user_444",
+      "birthdate": "Sep 1, 1999 7:32 AM"
+    },
+    {
+      "id": 4,
+      "fullname": "Ruperto Cutler",
+      "password": "574",
+      "username": "user_16",
+      "birthdate": "Feb 10, 1975 6:41 PM"
+    },
+    {
+      "id": 5,
+      "fullname": "Neron Esposi",
+      "password": "737",
+      "username": "user_577",
+      "birthdate": "Oct 21, 1984 11:18 PM"
+    },
+    {
+      "id": 6,
+      "fullname": "Elisha Littrell",
+      "password": "625",
+      "username": "user_403",
+      "birthdate": "Jul 23, 1967 12:05 AM"
+    },
+    {
+      "id": 7,
+      "fullname": "Eustace Iverson",
+      "password": "650",
+      "username": "user_651",
+      "birthdate": "Apr 13, 1985 8:44 AM"
+    },
+    {
+      "id": 8,
+      "fullname": "Valerye Leavy",
+      "password": "633",
+      "username": "user_260",
+      "birthdate": "Feb 11, 1997 6:11 PM"
+    },
+    {
+      "id": 9,
+      "fullname": "Alia Windrum",
+      "password": "871",
+      "username": "user_746",
+      "birthdate": "Apr 5, 1990 5:47 PM"
+    },
+    {
+      "id": 10,
+      "fullname": "Abran Westwick",
+      "password": "395",
+      "username": "user_956",
+      "birthdate": "Feb 21, 1988 11:43 PM"
+    },
+    {
+      "id": 11,
+      "fullname": "Binni Aitken",
+      "password": "766",
+      "username": "user_591",
+      "birthdate": "Sep 18, 1997 10:13 AM"
+    },
+    {
+      "id": 12,
+      "fullname": "Dorolice Hamsley",
+      "password": "263",
+      "username": "user_561",
+      "birthdate": "Oct 25, 1981 1:27 PM"
+    },
+    {
+      "id": 13,
+      "fullname": "Way Bartel",
+      "password": "574",
+      "username": "user_142",
+      "birthdate": "Jun 8, 1961 8:27 PM"
+    },
+    {
+      "id": 14,
+      "fullname": "Blake Godmar",
+      "password": "592",
+      "username": "user_629",
+      "birthdate": "Aug 29, 1968 5:47 PM"
+    },
+    {
+      "id": 15,
+      "fullname": "Lyndsey Dossett",
+      "password": "898",
+      "username": "user_129",
+      "birthdate": "Feb 17, 1990 7:27 AM"
+    },
+    {
+      "id": 16,
+      "fullname": "Micah Malinson",
+      "password": "563",
+      "username": "user_609",
+      "birthdate": "Jul 1, 1967 4:51 AM"
+    },
+    {
+      "id": 17,
+      "fullname": "Dorolice Ravillas",
+      "password": "455",
+      "username": "user_75",
+      "birthdate": "Mar 14, 1985 1:47 AM"
+    },
+    {
+      "id": 18,
+      "fullname": "Willey Westwick",
+      "password": "454",
+      "username": "user_63",
+      "birthdate": "Mar 7, 1987 10:35 PM"
+    },
+    {
+      "id": 19,
+      "fullname": "Neda Lemerie",
+      "password": "896",
+      "username": "user_237",
+      "birthdate": "May 14, 1965 5:56 PM"
+    },
+    {
+      "id": 20,
+      "fullname": "Elmira McVittie",
+      "password": "464",
+      "username": "user_611",
+      "birthdate": "Sep 3, 1993 11:45 AM"
+    }
+  ]
