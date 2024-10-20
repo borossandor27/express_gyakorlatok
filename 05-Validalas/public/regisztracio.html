@@ -6,31 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adatellenőrzés - Regisztrációs űrlap</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="Validalas.js" defer></script>
+    <script src="regisztracio.js" defer></script>
 </head>
 
 <body>
 
     <h2>Regisztrációs űrlap</h2>
-    <form action="http://localhost:3000/reg" id="regForm" enctype="multipart/form-data">
+    <form action="http://localhost:3000/reg" id="regForm" enctype="multipart/form-data" method="post">
         <!-- Név -->
         <label for="name">Teljes név:</label>
         <input type="text" id="name" name="name" value="Minta Ákos" required>
         <small>Legalább 5 karakter és egy szóköz</small><br>
         <!-- Jelszó -->
         <label for="password">Jelszó:</label>
-        <input type="password" id="password" name="password" value="n6m-R@KTb*q(Hx9XZQ" pattern="" required>
+        <input type="password" id="password" name="password" value="=vi-nHWzoctwwus"  required>
         <small>A jelszónak tartalmaznia kell kis- és nagybetűt, számjegyet és "!@#$%^&*()_+ " karakterek valamelyikét.</small><br>
 
         <!-- Jelszó megerősítése -->
         <label for="confirmPassword">Jelszó megerősítése:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" value="n6m-R@KTb*q(Hx9XZQ" required>
+        <input type="password" id="confirmPassword" name="confirmPassword" value="=vi-nHWzoctwwus" required>
         <small>A két jelszónak meg kell egyeznie.</small><br>
 
 
         <!-- Születési dátum -->
         <label for="birthdate">Születési dátum:</label>
-        <input type="date" id="birthdate" name="birthdate" value="2000-01-01" required>
+        <input type="date" id="birthdate" name="birthdate" required>
         <small>18 és 100 éves kor között</small><br>
 
         <!-- Email -->
@@ -50,7 +50,7 @@
 
         <!-- Életkor - Numerikus tartomány -->
         <label for="age">Életkor:</label>
-        <input type="number" id="age" name="age" min="18" max="100" value="20" required>
+        <input type="number" id="age" name="age" min="18" max="100" readonly>
         <small>18 és 100 év között</small><br>
 
         <!-- Kép feltöltése -->

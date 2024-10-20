@@ -19,3 +19,10 @@ button {
     margin-top: 20px;
     margin-left: 200px;
 }
+button a {
+    color: white;
+    text-decoration: none;
+}
+button:hover {
+    background-color: red;
+}

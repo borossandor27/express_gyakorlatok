@@ -2,6 +2,18 @@ let backEndUrl = "http://localhost:3000";
 /** Az űrlap elküldése előtt validáljuk az adatokat */
 /*  jelszó speciális karakterei: !@#$%^&*()_+ */
 document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("birthdate").setAttribute("max", dateOffset(18));
+  document.getElementById("birthdate").setAttribute("min", dateOffset(100));
+  document.getElementById("birthdate").setAttribute("value", dateOffset(30));
+  
+  document.getElementById("birthdate").addEventListener("change", function () {
+    let birthdate = document.getElementById("birthdate").value;
+    let today = new Date();
+    let age = today.getFullYear() - new Date(birthdate).getFullYear();
+    console.log(age);
+    document.getElementById("age").value = age;
+  });
+  
   document
     .getElementById("regForm")
     .addEventListener("submit", function (event) {
@@ -101,3 +113,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+function dateOffset(year){
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth()+1; //January is 0!
+  let yyyy = today.getFullYear()-year;
+  if(dd<10) {
+      dd = '0'+dd
+  } 
+  if(mm<10) {
+      mm = '0'+mm
+  } 
+  today = yyyy + '-' + mm + '-' + dd;
+  return today;
+}
