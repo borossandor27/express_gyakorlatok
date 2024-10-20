@@ -138,5 +138,12 @@
       "password": "464",
       "username": "user_611",
       "birthdate": "Sep 3, 1993 11:45 AM"
+    },
+    {
+      "id": 21,
+      "fullname": "Minta Máté",
+      "password": "admin",
+      "username": "admin",
+      "birthdate": "Sep 3, 1993 11:45 AM"
     }
   ]

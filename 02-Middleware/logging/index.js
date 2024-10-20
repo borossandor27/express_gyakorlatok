@@ -24,29 +24,28 @@ var express = require("express");
 var app = express();
 var port = 3000;
 app.use(express.json()); //-- JSON törzs (body) feldolgozása
-let users = require("./users.json"); //-- Felhasználók adatainak betöltése
-
-//
+var users = require("./users.json"); //-- Felhasználók adatainak betöltése
+const { validUser } = require('./tools');
+//-- saját készítésű middleware függvény, amely a kérés adatait logolja a konzolra
 app.use(function(req, res, next) {
-    //-- saját készítésű middleware függvény, amely a kérés adatait logolja a konzolra
     console.log("Request URL:", req.originalUrl);
     console.log("Request Type:", req.method);
     console.log('ip:', req.ip);
     next();
 });
+
+
+// felhasználó belépésének ellenőrzése
 app.use(function(req, res, next) {
     //-- felhasználó belépésének ellenőrzése
-    if (req.query.api_key) {
+    if (validUser(req.query.username, req.query.password)) {
         next();
     } else {
         res.status(401).send("Nem vagy bejelentkezve!");
     }
 });
 
-app.get("*", function(req, res, next) {
-    res.send("GET metódus");
-    next();
-});
+
 app.get("/users", function(req, res) {
     res.json(users);
 });
@@ -55,7 +54,7 @@ app.get("/users/:id", function(req, res) {
     if (user) {
         res.status(201).json(user);
     } else {
-        res.status(404).send(`Nem található felhasználó az id: ${req.params.id} azonosítóval`);
+        res.status(404).send(`Nem található felhasználó id: ${req.params.id} azonosítóval`);
     }
 });
 
@@ -64,15 +63,24 @@ app.post("/users", function(req, res) {
     users.push(user);
     res.status(201).json(user);
 });
+
 // 404-es hibakezelő middleware
 app.use((req, res, next) => {
     res.status(404).send('Az oldal nem található!');
 });
+
 // 500-as hibakezelő middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Valami hiba történt!');
 });
+
 app.listen(port, function() {
     console.log(`A szerver elindult a http://localhost:${port} címen`);
 });
+
+// Tesztelés:
+// http://localhost:3000/users -> Nem vagy bejelentkezve!
+// http://localhost:3000/users/1 -> Nem vagy bejelentkezve!
+// http://localhost:3000/users?username=admin&password=admin -> Az összes felhasználó adatai
+// http://localhost:3000/users/1?username=admin&password=admin -> A 1-es azonosítójú felhasználó adatai
