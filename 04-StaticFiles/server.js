@@ -5,9 +5,9 @@ hogy melyik évszakhoz tartozó oldalt szeretné megnyitni.
 */
 const express = require('express');
 const app = express();
-const path = require('path'); //-- path modul importálása
+const path = require('path'); //-- Ha platformfüggetlen útvonalak kezelésére van szükség
 
-const fs = require('fs'); //-- fs modul importálása
+const fs = require('fs'); //-- Fájlok kezelése a fájlrendszerben, például olvasás, írás, törlés, fájlok létezésének ellenőrzése.
 const { createServer } = require('http'); //-- http modul importálása
 const server = createServer(app); //-- express alkalmazás létrehozása
 const port = 3000; //-- port szám beállítása

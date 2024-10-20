@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adatellenőrzés - Regisztrációs űrlap</title>
-    <link rel="preload" href="Validalas.css" as="style" />
     <link rel="stylesheet" href="styles.css">
     <script src="Validalas.js" defer></script>
 </head>
@@ -17,15 +16,15 @@
         <!-- Név -->
         <label for="name">Teljes név:</label>
         <input type="text" id="name" name="name" value="Minta Ákos" required>
-        <small>Legalább 5 karakter</small><br>
+        <small>Legalább 5 karakter és egy szóköz</small><br>
         <!-- Jelszó -->
         <label for="password">Jelszó:</label>
-        <input type="password" id="password" name="password" value="n6m`-R?@KTb*q(Hx}9XZQ" required>
-        <small>A jelszónak tartalmaznia kell kis- és nagybetűt, számjegyet és speciális karaktert.</small><br>
+        <input type="password" id="password" name="password" value="n6m-R@KTb*q(Hx9XZQ" pattern="" required>
+        <small>A jelszónak tartalmaznia kell kis- és nagybetűt, számjegyet és "!@#$%^&*()_+ " karakterek valamelyikét.</small><br>
 
         <!-- Jelszó megerősítése -->
         <label for="confirmPassword">Jelszó megerősítése:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" value="n6m`-R?@KTb*q(Hx}9XZQ" required>
+        <input type="password" id="confirmPassword" name="confirmPassword" value="n6m-R@KTb*q(Hx9XZQ" required>
         <small>A két jelszónak meg kell egyeznie.</small><br>
 
 

@@ -1,4 +1,6 @@
 let backEndUrl = "http://localhost:3000";
+/** Az űrlap elküldése előtt validáljuk az adatokat */
+/*  jelszó speciális karakterei: !@#$%^&*()_+ */
 document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("regForm")

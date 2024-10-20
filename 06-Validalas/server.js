@@ -28,8 +28,8 @@ app.use((req, res, next) => {
 const fs = require("fs"); //-- fs modul importálása
 const port = 3000; //-- port szám beállítása
 const bodyParser = require("body-parser"); //-- body-parser modul importálása
-app.use(bodyParser.urlencoded({ extended: true })); //-- body-parser middleware beállítása
-app.use(bodyParser.json()); //-- body-parser middleware beállítása
+app.use(bodyParser.urlencoded({ extended: true })); //-- a kapott enctype="multipart/form-data" űrlap adatainak a feldolgozása
+app.use(bodyParser.json()); //-- a kapott json törzs (body) feldolgozása
 app.use(express.static('public')); //-- statikus fájlok elérési útvonalának beállítása
 
 let users = []; //-- felhasználók tömbjének deklarálása
