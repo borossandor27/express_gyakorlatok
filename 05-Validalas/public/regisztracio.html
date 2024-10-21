@@ -19,12 +19,12 @@
         <small>Legalább 5 karakter és egy szóköz</small><br>
         <!-- Jelszó -->
         <label for="password">Jelszó:</label>
-        <input type="password" id="password" name="password" value="=vi-nHWzoctwwus"  required>
-        <small>A jelszónak tartalmaznia kell kis- és nagybetűt, számjegyet és "!@#$%^&*()_+ " karakterek valamelyikét.</small><br>
+        <input type="password" id="password" name="password" value="vi=nHWzoct3wwus4" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*_+ =]).{8,}$" required>
+        <small>A jelszónak tartalmaznia kell kis- és nagybetűt, számjegyet és "!@#$%^&*_+ =" karakterek valamelyikét. Nem lehet 8 karakternél kevesebb</small><br>
 
         <!-- Jelszó megerősítése -->
         <label for="confirmPassword">Jelszó megerősítése:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" value="=vi-nHWzoctwwus" required>
+        <input type="password" id="confirmPassword" name="confirmPassword" value="vi=nHWzoct3wwus4" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*_+ =]).{8,}$" required>
         <small>A két jelszónak meg kell egyeznie.</small><br>
 
 

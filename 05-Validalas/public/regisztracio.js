@@ -5,15 +5,19 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("birthdate").setAttribute("max", dateOffset(18));
   document.getElementById("birthdate").setAttribute("min", dateOffset(100));
   document.getElementById("birthdate").setAttribute("value", dateOffset(30));
-  
-  document.getElementById("birthdate").addEventListener("change", function () {
-    let birthdate = document.getElementById("birthdate").value;
+
+  function diffYears() {
+    let birthdate = new Date(document.getElementById("birthdate").value);
     let today = new Date();
-    let age = today.getFullYear() - new Date(birthdate).getFullYear();
-    console.log(age);
+    let age = today.getFullYear() - birthdate.getFullYear();
+    return age;
+  }
+  document.getElementById("age").setAttribute("value", diffYears());
+  document.getElementById("birthdate").addEventListener("change", function () {
+    let age = diffYears();
     document.getElementById("age").value = age;
   });
-  
+  //-- A form elem eseménykezelője --
   document
     .getElementById("regForm")
     .addEventListener("submit", function (event) {
@@ -95,35 +99,32 @@ document.addEventListener("DOMContentLoaded", function () {
     let formData = new FormData(document.getElementById("regForm"));
     // A FormData objektumot JSON-né alakítjuk
     let userDatas = Object.fromEntries(formData.entries()); // .entries() a FormData párokhoz
-    console.log(userDatas);
     let response = await fetch(backEndUrl + "/reg", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userDatas), // JSON-ként küldjük el az adatokat
+      body: formData, // JSON-ként küldve a feltöltött fájl tulajdonságait elveszítjük
     });
-
+    console.log(response);
     // Kezeld a választ
     if (response.ok) {
       alert("Sikeres regisztráció");
     } else {
-      console.error(response);
+      console.error(response.errors);
       alert("Hiba történt a regisztráció során");
     }
   }
 });
-function dateOffset(year){
+
+function dateOffset(year) {
   let today = new Date();
   let dd = today.getDate();
-  let mm = today.getMonth()+1; //January is 0!
-  let yyyy = today.getFullYear()-year;
-  if(dd<10) {
-      dd = '0'+dd
-  } 
-  if(mm<10) {
-      mm = '0'+mm
-  } 
-  today = yyyy + '-' + mm + '-' + dd;
+  let mm = today.getMonth() + 1; //January is 0!
+  let yyyy = today.getFullYear() - year;
+  if (dd < 10) {
+    dd = "0" + dd;
+  }
+  if (mm < 10) {
+    mm = "0" + mm;
+  }
+  today = yyyy + "-" + mm + "-" + dd;
   return today;
 }

@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
     }
   });
   
-  const upload = multer({ storage: storage });
+const upload = multer({ storage: storage });
 const fs = require("fs"); //-- fájlrendszer modul importálása  
 const cors = require("cors"); //-- böngésző CORS blokkolás feloldása
 app.use(
@@ -74,8 +74,9 @@ app.get("/login", (req, res) => {
     .status(201)
     .sendFile(path.join(__dirname, "public", "bejelentkezes.html"));
 });
-app.post("/reg", (req, res) => {
+app.post("/reg",upload.single('profilePic'), (req, res) => {
   console.log(req.body);
+  console.log(req.file);
   let name = req.body.name;
   let password = req.body.password;
   let confirmPassword = req.body.confirmPassword;
@@ -83,13 +84,15 @@ app.post("/reg", (req, res) => {
   let email = req.body.email;
   let accountNumber = req.body.accountNumber;
   let postalCode = req.body.postalCode;
-  let profilePic = req.body.profilePic;
+  let profilePic = req.file;
+  console.log(profilePic);
+  //--------------- ellenőrzések ---------------------------------
   let postalCodeRegex = /^\d{4}$/;
   if (!postalCodeRegex.test(postalCode)) {
     errors.push("Az irányítószámnak pontosan négy számjegyűnek kell lennie.");
   }
-  // Jelszó validálása
-  let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+  // Jelszó validálása - A jelszónak tartalmaznia kell kis- és nagybetűt, számjegyet és "!@#$%^&*()_+ =" karakterek valamelyikét. Nem lehet 8 karakternél kevesebb
+  let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*_+ =]).{8,}$/;
   if (!passwordRegex.test(password)) {
     errors.push(
       "A jelszónak tartalmaznia kell legalább egy kisbetűt, egy nagybetűt, egy számot és egy speciális karaktert."
@@ -115,7 +118,7 @@ app.post("/reg", (req, res) => {
     if (fileSize < 20 || fileSize > 2048) {
       errors.push("A kép mérete 20KB és 2MB között kell legyen.");
     }
-    let fileType = profilePic.type;
+    let fileType = profilePic.mimetype;
     if (!fileType.startsWith("image/")) {
       errors.push("Csak képfájlok megengedettek.");
     }
@@ -130,13 +133,14 @@ app.post("/reg", (req, res) => {
     email: email,
     accountNumber: accountNumber,
     postalCode: postalCode,
-    profilePic: profilePic.,
+    profilePic: profilePic.filename
   };
+  console.log(errors);
   if (errors.length > 0) {
     res.status(400).json({
       success: false,
       message: "Hibás adatok!",
-      error: errors,
+      errors: errors,
       data: user,
     });
   } else {

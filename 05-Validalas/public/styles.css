@@ -1,5 +1,13 @@
+body {
+    font-size: 1em;
+    line-height: 1.5rem;
+    font-family: Arial, sans-serif;
+    background-color: lightblue;
+    margin: 0;
+    padding: 0;
+}
+
 label {
-    font-size: 20px;
     color: navy;
     width: 200px;
     display: inline-block;
@@ -9,6 +17,7 @@ small {
     color: red;
     font-style: italic;
 }
+
 button {
     background-color: green;
     color: white;
@@ -19,10 +28,34 @@ button {
     margin-top: 20px;
     margin-left: 200px;
 }
+
 button a {
     color: white;
     text-decoration: none;
 }
+
 button:hover {
     background-color: red;
+}
+
+.card {
+    width: 24vw;
+    height: auto;
+    background-color: lightgray;
+    border-radius: 10px;
+    margin: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+.card-img-top {
+    height: 8vw;
+    width: auto;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+card-title {
+    color: navy;
+    font-size: 1.5em;
+    margin-top: 20px;
 }
