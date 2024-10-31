@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 function newCard(user, i) {
   console.log(user);
-  let imgSrc=`https://randomuser.me/api/portraits/men/${30+i}.jpg`;
+  let imgSrc=`https://randomuser.me/api/portraits/men/${getRandomInt(1,99)}.jpg`;
   console.log(imgSrc);
   return `<div class="card" style="width: 18rem;">
   <img src="${imgSrc}" class="card-img-top" alt="...">
@@ -49,3 +49,8 @@ function newLocation(url) {
   window.location = url;
 }
 });
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}

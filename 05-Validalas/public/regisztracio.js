@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
   async function adatKuldes() {
     let formData = new FormData(document.getElementById("regForm"));
     // A FormData objektumot JSON-né alakítjuk
-    let userDatas = Object.fromEntries(formData.entries()); // .entries() a FormData párokhoz
+    // let userDatas = Object.fromEntries(formData.entries()); // .entries() a FormData párokhoz
     let response = await fetch(backEndUrl + "/reg", {
       method: "POST",
       body: formData, // JSON-ként küldve a feltöltött fájl tulajdonságait elveszítjük
