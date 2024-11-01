@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Gyümölcs CRUD alkalmazás</title>
+</head>
+<body>
+    <h1>Gyümölcsök listája</h1>
+    <ul>
+        <% fruits.forEach(fruit => { %>
+            <li>
+                <strong><%= fruit.megnevezes %></strong> - 
+                Mennyiség: <%= fruit.mennyiseg %> <%= fruit.mennyisegiEgyseg %>, 
+                Egységár: <%= fruit.egysegara %>
+                <form action="/delete/<%= fruit.id %>" method="POST" style="display:inline;">
+                    <button type="submit">Törlés</button>
+                </form>
+                <form action="/edit/<%= fruit.id %>" method="POST" style="display:inline;">
+                    <input type="text" name="megnevezes" value="<%= fruit.megnevezes %>">
+                    <input type="number" name="mennyiseg" value="<%= fruit.mennyiseg %>" step="0.1">
+                    <input type="number" name="egysegara" value="<%= fruit.egysegara %>" step="0.1">
+                    <input type="text" name="mennyisegiEgyseg" value="<%= fruit.mennyisegiEgyseg %>">
+                    <button type="submit">Módosítás</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+
+    <h2>Új gyümölcs hozzáadása</h2>
+    <form action="/add" method="POST">
+        <label>Megnevezés: <input type="text" name="megnevezes" required></label><br>
+        <label>Mennyiség: <input type="number" name="mennyiseg" step="0.1" required></label><br>
+        <label>Egységár: <input type="number" name="egysegara" step="0.1" required></label><br>
+        <label>Mennyiségi Egység: <input type="text" name="mennyisegiEgyseg" required></label><br>
+        <button type="submit">Hozzáadás</button>
+    </form>
+</body>
+</html>
