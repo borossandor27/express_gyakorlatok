@@ -43,6 +43,7 @@ app.post('/add', (req, res) => {
 app.post('/delete/:id', (req, res) => {
     let fruits = loadData();
     const id = parseInt(req.params.id);
+    //-- Az id alapján kiválogatjuk azokat az elemeket, amelyeknek az id-je nem egyezik meg a törlendő id-vel
     fruits = fruits.filter(fruit => fruit.id !== id);
     saveData(fruits);
     res.redirect('/');

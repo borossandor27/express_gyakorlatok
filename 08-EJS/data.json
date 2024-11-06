@@ -1,44 +1,44 @@
 [
-    {
-        "id": 1,
-        "megnevezes": "Apple",
-        "mennyiseg": 2.5,
-        "egysegara": 1.5,
-        "mennyisegiEgyseg": "kg"
-    },
-    {
-        "id": 2,
-        "megnevezes": "Banana",
-        "mennyiseg": 1.2,
-        "egysegara": 1.2,
-        "mennyisegiEgyseg": "kg"
-    },
-    {
-        "id": 3,
-        "megnevezes": "Orange",
-        "mennyiseg": 3.0,
-        "egysegara": 1.3,
-        "mennyisegiEgyseg": "kg"
-    },
-    {
-        "id": 4,
-        "megnevezes": "Grapes",
-        "mennyiseg": 0.8,
-        "egysegara": 2.0,
-        "mennyisegiEgyseg": "kg"
-    },
-    {
-        "id": 5,
-        "megnevezes": "Pineapple",
-        "mennyiseg": 1.0,
-        "egysegara": 3.5,
-        "mennyisegiEgyseg": "db"
-    },
-    {
-        "id": 6,
-        "megnevezes": "Strawberry",
-        "mennyiseg": 0.5,
-        "egysegara": 2.5,
-        "mennyisegiEgyseg": "kg"
-    }
+  {
+    "id": 1,
+    "megnevezes": "Apple",
+    "mennyiseg": 2.5,
+    "egysegara": 1.5,
+    "mennyisegiEgyseg": "kg"
+  },
+  {
+    "id": 2,
+    "megnevezes": "Banana",
+    "mennyiseg": 1.2,
+    "egysegara": 1.2,
+    "mennyisegiEgyseg": "kg"
+  },
+  {
+    "id": 3,
+    "megnevezes": "Orange",
+    "mennyiseg": 3,
+    "egysegara": 1.3,
+    "mennyisegiEgyseg": "kg"
+  },
+  {
+    "id": 4,
+    "megnevezes": "Grapes",
+    "mennyiseg": 0.8,
+    "egysegara": 2,
+    "mennyisegiEgyseg": "kg"
+  },
+  {
+    "id": 5,
+    "megnevezes": "Pineapple",
+    "mennyiseg": 0.9,
+    "egysegara": 3.5,
+    "mennyisegiEgyseg": "db"
+  },
+  {
+    "id": 6,
+    "megnevezes": "Strawberry",
+    "mennyiseg": 0.7,
+    "egysegara": 2.5,
+    "mennyisegiEgyseg": "kg"
+  }
 ]
