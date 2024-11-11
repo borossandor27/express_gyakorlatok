@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJS ciklusok</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Asszociatív tömb elemei <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while" target="_blank">'do ... while'</a> ciklussal</h1>
+    <ul>
+        <% let keys = Object.keys(users); 
+        var i = 0;
+        do { %>
+            <li><%= i %>: <%= users[i].name %>(<%= users[i].age %>), <%= users[i].city %></li>
+        <% i++; //-- ciklusváltozó növelése
+        } while (i < keys.length); %>
+        
+    </ul>
+</body>
+</html>
