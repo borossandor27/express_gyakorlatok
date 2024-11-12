@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "name": "Laptop",
+        "category": "electronics",
+        "price": 1200
+    },
+    {
+        "id": 2,
+        "name": "Smartphone",
+        "category": "electronics",
+        "price": 800
+    },
+    {
+        "id": 3,
+        "name": "Headphones",
+        "category": "electronics",
+        "price": 45
+    },
+    {
+        "id": 4,
+        "name": "Microwave Oven",
+        "category": "home_appliance",
+        "price": 150
+    },
+    {
+        "id": 5,
+        "name": "Coffee Maker",
+        "category": "home_appliance",
+        "price": 60
+    },
+    {
+        "id": 6,
+        "name": "Blender",
+        "category": "home_appliance",
+        "price": 30
+    },
+    {
+        "id": 7,
+        "name": "T-Shirt",
+        "category": "clothing",
+        "price": 20
+    },
+    {
+        "id": 8,
+        "name": "Jeans",
+        "category": "clothing",
+        "price": 50
+    },
+    {
+        "id": 9,
+        "name": "Jacket",
+        "category": "clothing",
+        "price": 100
+    }
+]
