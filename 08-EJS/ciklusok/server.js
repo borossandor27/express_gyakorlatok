@@ -16,9 +16,11 @@ const users = [
   { name: "Anna", age: 22, city: "Budapest" },
   { name: "Béla", age: 33, city: "Debrecen" },
   { name: "Cecil", age: 44, city: "Szeged" },
+  { name: "Dénes", age: 55, city: "Pécs" },
+  { name: "Elemér", age: 66, city: "Miskolc" }
 ];
 app.get("/", (req, res) => {
-  res.send("A szerver működik");
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 app.get("/for", (req, res) => {
   res.render("for", { users });
