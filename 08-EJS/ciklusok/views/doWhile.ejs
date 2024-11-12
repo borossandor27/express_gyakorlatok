@@ -10,10 +10,10 @@
     <h1>Asszociatív tömb elemei <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while" target="_blank">'do ... while'</a> ciklussal</h1>
     <ul>
         <% let keys = Object.keys(users); 
-        var i = 0;
+        var i = 0; //-- ciklusváltozó inicializálása!!!
         do { %>
             <li><%= i %>: <%= users[i].name %>(<%= users[i].age %>), <%= users[i].city %></li>
-        <% i++; //-- ciklusváltozó növelése
+        <% i++; //-- ciklusváltozó növelése!!!
         } while (i < keys.length); %>
         
     </ul>
