@@ -1,0 +1,74 @@
+[
+    {
+        "uazon": "1",
+        "unev": "Kovács János",
+        "uemail": "janos.kovacs@example.com",
+        "utel": "+36201234567",
+        "ujelszo": "hashedpassword123",
+        "uszuletett ": "1985.03.15 "
+    },
+    {
+        "uazon": "2",
+        "unev": "Nagy Anna",
+        "uemail": "anna.nagy@example.com",
+        "utel": "+36207654321",
+        "ujelszo": "securepassword456",
+        "uszuletett ": "1990.06.24 "
+    },
+    {
+        "uazon": "3",
+        "unev": "Szabó Péter",
+        "uemail": "peter.szabo@example.com",
+        "utel": "+36209876543",
+        "ujelszo": "mypassword789",
+        "uszuletett ": "1978.12.05 "
+    },
+    {
+        "uazon": "4",
+        "unev": "Tóth Márta",
+        "uemail": "marta.toth@example.com",
+        "utel": "+36203456789",
+        "ujelszo": "password1234",
+        "uszuletett ": "1988.07.22 "
+    },
+    {
+        "uazon": "5",
+        "unev": "Kiss László",
+        "uemail": "laszlo.kiss@example.com",
+        "utel": "+36205678901",
+        "ujelszo": "secure789",
+        "uszuletett ": "1980.05.11 "
+    },
+    {
+        "uazon": "6",
+        "unev": "Farkas Eszter",
+        "uemail": "eszter.farkas@example.com",
+        "utel": "+36201234987",
+        "ujelszo": "anotherpassword",
+        "uszuletett ": "1995.09.09 "
+    },
+    {
+        "uazon": "7",
+        "unev": "Varga Zoltán",
+        "uemail": "zoltan.varga@example.com",
+        "utel": "+36207890123",
+        "ujelszo": "zoltanpass",
+        "uszuletett ": "1982.02.18 "
+    },
+    {
+        "uazon": "8",
+        "unev": "neve",
+        "uemail": "email",
+        "utel": "telefon",
+        "ujelszo": "jelszo",
+        "uszuletett ": "2024.11.05 "
+    },
+    {
+        "uazon": null,
+        "unev": null,
+        "uemail": null,
+        "utel": null,
+        "ujelszo": null,
+        "uszuletett ": null
+    }
+]

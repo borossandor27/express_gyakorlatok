@@ -1,7 +1,27 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2024. Nov 23. 22:24
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
 -- Adatbázis: `golfklub`
 --
-CREATE DATABASE IF NOT EXISTS `golfklub` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+DROP DATABASE IF EXISTS `golfklub`;
+CREATE DATABASE `golfklub` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `golfklub`;
 
 -- --------------------------------------------------------
@@ -15,10 +35,8 @@ CREATE TABLE `befizetesek` (
   `uazon` bigint(20) UNSIGNED NOT NULL,
   `bido` datetime NOT NULL,
   `bosszeg` int(11) NOT NULL,
-  `bmod` varchar(50) NOT NULL,
-  PRIMARY KEY (`uazon`,`bido`),
-  check (`bosszeg` > 1000)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `bmod` varchar(50) NOT NULL
+) ;
 
 --
 -- A tábla adatainak kiíratása `befizetesek`
@@ -29,9 +47,9 @@ INSERT INTO `befizetesek` (`uazon`, `bido`, `bosszeg`, `bmod`) VALUES
 (2, '2024-11-02 14:30:00', 20000, 'Készpénz'),
 (3, '2024-11-03 09:00:00', 18000, 'Banki átutalás'),
 (4, '2024-11-05 11:20:00', 22000, 'Készpénz'),
+(4, '2024-11-08 10:30:00', 15000, 'Készpénz'),
 (5, '2024-11-06 15:50:00', 17500, 'Banki átutalás'),
-(6, '2024-11-07 09:10:00', 19000, 'Bankkártya'),
-(4, '2024-11-08 10:30:00', 15000, 'Készpénz');
+(6, '2024-11-07 09:10:00', 19000, 'Bankkártya');
 
 -- --------------------------------------------------------
 
@@ -52,12 +70,12 @@ CREATE TABLE `jelenlet` (
 
 INSERT INTO `jelenlet` (`uazon`, `jerkezett`, `jtavozott`) VALUES
 (1, '2024-11-10 08:00:00', '2024-11-10 12:00:00'),
+(1, '2024-11-15 10:00:00', '2024-11-15 13:30:00'),
 (2, '2024-11-11 09:15:00', '2024-11-11 13:45:00'),
 (3, '2024-11-12 07:30:00', NULL),
 (4, '2024-11-12 08:15:00', '2024-11-12 11:45:00'),
 (5, '2024-11-13 07:50:00', '2024-11-13 12:00:00'),
-(6, '2024-11-14 09:00:00', NULL),
-(1, '2024-11-15 10:00:00', '2024-11-15 13:30:00');
+(6, '2024-11-14 09:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -79,12 +97,12 @@ CREATE TABLE `tagsagok` (
 
 INSERT INTO `tagsagok` (`uazon`, `tkezdet`, `tveg`, `tszint`) VALUES
 (1, '2024-01-01', '2024-12-31', 'Arany'),
+(1, '2025-01-01', NULL, 'Gyémánt'),
 (2, '2024-02-01', NULL, 'Ezüst'),
 (3, '2023-01-01', '2024-01-31', 'Bronz'),
 (4, '2023-05-01', '2024-05-01', 'Ezüst'),
 (5, '2024-03-01', NULL, 'Bronz'),
-(6, '2022-01-01', '2024-01-01', 'Arany'),
-(1, '2025-01-01', NULL, 'Gyémánt');
+(6, '2022-01-01', '2024-01-01', 'Arany');
 
 -- --------------------------------------------------------
 
@@ -123,19 +141,19 @@ INSERT INTO `ugyfelek` (`uazon`, `unev`, `uemail`, `utel`, `ujelszo`, `uszuletet
 -- A tábla indexei `befizetesek`
 --
 ALTER TABLE `befizetesek`
-  ADD KEY `befizetesek-ugyfelek` (`uazon`);
+  ADD PRIMARY KEY (`uazon`,`bido`);
 
 --
 -- A tábla indexei `jelenlet`
 --
 ALTER TABLE `jelenlet`
-  ADD KEY `jelenlet-ugyfelek` (`uazon`);
+  ADD PRIMARY KEY (`uazon`,`jerkezett`);
 
 --
 -- A tábla indexei `tagsagok`
 --
 ALTER TABLE `tagsagok`
-  ADD KEY `tagsagok-ugyfelek` (`uazon`);
+  ADD PRIMARY KEY (`uazon`,`tkezdet`);
 
 --
 -- A tábla indexei `ugyfelek`
@@ -174,4 +192,8 @@ ALTER TABLE `jelenlet`
 --
 ALTER TABLE `tagsagok`
   ADD CONSTRAINT `tagsagok-ugyfelek` FOREIGN KEY (`uazon`) REFERENCES `ugyfelek` (`uazon`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

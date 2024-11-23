@@ -1,0 +1,14 @@
+{
+    "success":true,
+    "data":{
+       "uazon":"2",
+       "unev":"Nagy Anna",
+       "uemail":"anna.nagy@example.com",
+       "utel":"+36207654321",
+       "ujelszo":"securepassword456",
+       "uszuletett ":"1990.06.24 "
+    },
+    "error":{
+       "hibaszoveg":"Mi okozta a hibat"
+    }
+ }
