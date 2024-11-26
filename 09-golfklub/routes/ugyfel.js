@@ -1,4 +1,5 @@
 const express = require('express');
+const { connection} = require('../index');
 const router = express.Router();
 
 // Ügyfél létrehozása
@@ -13,7 +14,16 @@ router.post('/login', (req, res) => {
 
 // Ügyfelek listája
 router.get('/', (req, res) => {
-  res.send('Ügyfelek listája');
+    sql="SELECT * FROM `ugyfelek`";
+    rows = [];
+    async function fetchData() {
+        
+        const [rows] = await connection.query(sql);
+        console.log(rows);
+      }
+      fetchData();
+res.status(201).json(rows);
+  
 });
 
 // Ügyfél módosítása
