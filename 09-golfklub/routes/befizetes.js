@@ -1,5 +1,6 @@
-const express = require('express');
+import express from 'express'; // Express könyvtár importálása
 const router = express.Router();
+import  connection  from '../db.js'; // Az adatbázis kapcsolat kódjának betöltése
 
 // Tagdíj befizetése
 router.post('/', (req, res) => {
@@ -21,4 +22,4 @@ router.get('/ugyfelek', (req, res) => {
   res.send('Összes ügyfél befizetései');
 });
 
-module.exports = router;
+export default router;

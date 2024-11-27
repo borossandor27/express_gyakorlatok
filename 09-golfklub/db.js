@@ -7,24 +7,29 @@
 * A MySQL2/promise egy Promise alapú működésű MySQL csomag.
 * Lehetővé teszi az await és async használatát, amely nem blokkolja az eseményciklust.
 */
+// privát adatok beolvasása adatkapcsolathoz
+import mysql from 'mysql2/promise';
+import dotenv from 'dotenv';
 
-const mysql = require('mysql2/promise');
+dotenv.config(); // Környezeti változók betöltése
 
-const connectToDatabase = async () => {
-  try {
-    const connection = await mysql.createConnection({
-      host: process.env.DB_HOST || 'localhost',
-      user: process.env.DB_USER || 'root',
-      password: process.env.DB_PASSWORD ||'',
-      port: process.env.DB_PORT || 3306,
-      database: process.env.DB_NAME || 'golfklub'
-    });
-    console.log('Sikeresen kapcsolódtál az adatbázishoz!');
-    return connection;
-  } catch (error) {
-    console.error('Nem sikerült kapcsolódni az adatbázishoz:', error);
-    process.exit(1);
-  }
-};
+// Kapcsolat létrehozása
+export const connection = await mysql.createConnection({
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || '',
+  database: process.env.DB_NAME || 'golfklub',
+  port: process.env.DB_PORT || 3306,
+});
 
-module.exports = connectToDatabase;
+// Teszteljük a kapcsolatot
+try {
+  console.log('Kapcsolódás az adatbázishoz sikeres!');
+  const [rows] = await connection.query('SELECT 1');
+  console.log('Teszt lekérdezés eredménye:', rows);
+} catch (err) {
+  console.error('Hiba történt:', err.message);
+} finally {
+  await connection.end();
+}
+export default connection; // Az adatbázis kapcsolat exportálása

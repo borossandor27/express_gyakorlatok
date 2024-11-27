@@ -1,6 +1,6 @@
-const express = require('express');
-const { connection} = require('../index');
+import express from 'express'; // Express könyvtár importálása
 const router = express.Router();
+import  connection  from '../db.js'; // Az adatbázis kapcsolat kódjának betöltése
 
 // Ügyfél létrehozása
 router.post('/register', (req, res) => {
@@ -36,4 +36,4 @@ router.delete('/:uazon', (req, res) => {
   res.send(`Ügyfél törölve: ${req.params.uazon}`);
 });
 
-module.exports = router;
+export default router;

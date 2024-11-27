@@ -1,5 +1,6 @@
-const express = require('express');
+import express from 'express'; // Express könyvtár importálása
 const router = express.Router();
+import  connection  from '../db.js'; // Az adatbázis kapcsolat kódjának betöltése
 
 // Tagsági szint módosítása
 router.post('/:uazon/:tszint', (req, res) => {
@@ -11,4 +12,4 @@ router.get('/:uazon', (req, res) => {
   res.send(`Tagság változásai: ${req.params.uazon}`);
 });
 
-module.exports = router;
+export default router;

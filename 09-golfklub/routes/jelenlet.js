@@ -1,5 +1,6 @@
-const express = require('express');
+import express from 'express'; // Express könyvtár importálása
 const router = express.Router();
+import  connection  from '../db.js'; // Az adatbázis kapcsolat kódjának betöltése
 
 // Minden látogatás
 router.get('/', (req, res) => {
@@ -21,4 +22,4 @@ router.patch('/:uazon', (req, res) => {
   res.send(`Ügyfél kilépett: ${req.params.uazon}`);
 });
 
-module.exports = router;
+export default router;
