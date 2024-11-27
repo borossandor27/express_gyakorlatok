@@ -30,6 +30,6 @@ try {
 } catch (err) {
   console.error('Hiba történt:', err.message);
 } finally {
-  await connection.end();
+  //await connection.end();
 }
 export default connection; // Az adatbázis kapcsolat exportálása
