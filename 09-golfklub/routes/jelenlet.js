@@ -3,22 +3,22 @@ const router = express.Router();
 import  connection  from '../db.js'; // Az adatbázis kapcsolat kódjának betöltése
 
 // Minden látogatás
-router.get('/', (req, res) => {
+router.get('/', async(req, res) => {
   res.send('Minden látogatás');
 });
 
 // Adott ügyfél látogatásai
-router.get('/:uazon', (req, res) => {
+router.get('/:uazon', async(req, res) => {
   res.send(`Adott ügyfél látogatásai: ${req.params.uazon}`);
 });
 
 // Ügyfél belépése
-router.post('/:uazon', (req, res) => {
+router.post('/:uazon', async(req, res) => {
   res.send(`Ügyfél belépett: ${req.params.uazon}`);
 });
 
 // Ügyfél kilépése
-router.patch('/:uazon', (req, res) => {
+router.patch('/:uazon', async(req, res) => {
   res.send(`Ügyfél kilépett: ${req.params.uazon}`);
 });
 
