@@ -1,6 +1,6 @@
 import express from 'express'; // Express könyvtár importálása
 const router = express.Router();
-import  connection  from '../db.js'; // Az adatbázis kapcsolat kódjának betöltése
+import * as db from "../db.js"; // Az adatbázis kapcsolat kódjának betöltése
 
 // Minden látogatás
 router.get('/', async(req, res) => {

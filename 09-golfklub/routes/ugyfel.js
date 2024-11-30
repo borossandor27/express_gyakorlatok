@@ -1,38 +1,33 @@
 import express from "express"; // Express könyvtár importálása
 const router = express.Router();
-import connection from "../db.js"; // Az adatbázis kapcsolat kódjának betöltése
 
 // Ügyfél létrehozása
-router.post("/register", async(req, res) => {
+router.post("/register", async (req, res) => {
   res.send("Új ügyfél létrehozva");
 });
 
 // Ügyfél belépése
-router.post("/login", async(req, res) => {
+router.post("/login", async (req, res) => {
   res.send("Ügyfél belépett");
 });
 
 // Ügyfelek listája
 router.get("/", async (req, res) => {
-  let sql = "SELECT * FROM `ugyfelek`";
-  
-  try {
-    const [rows] = await connection.query(sql);
-    console.log(rows);
-    res.status(201).json(rows); // Válasz küldése az adatbázis válaszával
-  } catch (err) {
-    console.error(err); // Hibakezelés
-    res.status(500).send("Hiba az adatbázis lekérdezés közben");
+  let result = await db.getUgyfelek();
+  if (result.success) {
+    res.status(201).json(result.data);
+  } else {
+    res.status(500).json(result.error);
   }
 });
 
 // Ügyfél módosítása
-router.put("/:uazon", async(req, res) => {
+router.put("/:uazon", async (req, res) => {
   res.send(`Ügyfél módosítva: ${req.params.uazon}`);
 });
 
 // Ügyfél törlése
-router.delete("/:uazon", async(req, res) => {
+router.delete("/:uazon", async (req, res) => {
   res.send(`Ügyfél törölve: ${req.params.uazon}`);
 });
 

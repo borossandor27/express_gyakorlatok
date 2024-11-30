@@ -1,8 +1,15 @@
 import express from "express"; // Express könyvtár importálása
-const app = express();
-
+export const app = express();
 // Middleware az adatfeldolgozáshoz
 app.use(express.json());
+import * as db from "./db.js"; // Az adatbázis kapcsolat kódjának betöltése
+let result = await db.dbInit();
+if (!result.success) {
+  console.log(result.message.join("\n"));
+  console.log("\nA program leáll!");
+  process.exit(1);
+}
+
 
 // Egyed alapú route-ok importálása
 import ugyfelRoutes from "./routes/ugyfel.js";
