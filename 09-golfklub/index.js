@@ -14,12 +14,16 @@ if (!result.success) {
   console.log("\nA program leáll!");
   process.exit(1);
 }
+// input adatok elleőrzéséhez szükséges csomag importálása
+import { validateRequest } from './validators/validator.js'; // input adatok ellenőrzéséhez szükséges függvény importálása
+
 
 // Egyed alapú route-ok importálása
 import ugyfelRoutes from "./routes/ugyfel.js";
 import befizetesRoutes from "./routes/befizetes.js";
 import tagsagRoutes from "./routes/tagsag.js";
 import jelenletRoutes from "./routes/jelenlet.js";
+
 
 
 // Route-ok beállítása

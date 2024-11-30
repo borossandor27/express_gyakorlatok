@@ -1,9 +1,10 @@
 import express from "express"; // Express könyvtár importálása
 const router = express.Router();
 import * as db from "../db.js"; // Az adatbázis kapcsolat kódjának betöltése
-
+import { validateRequest } from '../validators/validator.js'; // input adatok ellenőrzéséhez szükséges függvény importálása
+import { ugyfelShema } from '../validators/ugyfelShema.js'; // input adatok ellenőrzéséhez szükséges séma importálása
 // Ügyfél létrehozása
-router.post("/register", async (req, res) => {
+router.post("/register",validateRequest(ugyfelShema), async (req, res) => {
   let result= await db.createUgyfel(req.body);
   if (result.success) {
     res.status(201).json(result.data);
@@ -47,7 +48,7 @@ router.get("/:uazon", async (req, res) => {
 });
 
 // Ügyfél módosítása
-router.put("/:uazon", async (req, res) => {
+router.put("/:uazon",validateRequest(ugyfelShema), async (req, res) => {
   let result = await db.updateUgyfel(req.params.uazon, req.body);
   console.log(result.message);
   if (result.success) {
