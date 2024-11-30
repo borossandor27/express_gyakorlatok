@@ -1,15 +1,19 @@
 import express from "express"; // Express könyvtár importálása
 export const app = express();
-// Middleware az adatfeldolgozáshoz
-app.use(express.json());
-import * as db from "./db.js"; // Az adatbázis kapcsolat kódjának betöltése
-let result = await db.dbInit();
+// Middlewarek az adatfeldolgozáshoz
+app.use(express.json()); // JSON adatok feldolgozásához
+app.use(express.urlencoded({ extended: true })); // Űrlapadatok feldolgozásához
+
+import cors from "cors"; // CORS middleware importálása
+app.use(cors()); // CORS engedélyezése
+
+import {dbInit} from "./db.js"; // Az adatbázis kapcsolat kódjának betöltése
+let result = await dbInit(); // kapcsolódás az adatbázishoz
 if (!result.success) {
   console.log(result.message.join("\n"));
   console.log("\nA program leáll!");
   process.exit(1);
 }
-
 
 // Egyed alapú route-ok importálása
 import ugyfelRoutes from "./routes/ugyfel.js";
@@ -26,11 +30,10 @@ app.use("/golf/jelenlet", jelenletRoutes); // Jelenlét route-ok
 
 // 404-es hibaoldal
 app.use((req, res) => {
-  res.status(404).send("404 - Az oldal nem található");
+  res.header("Content-Type","text/html; charset=utf-8");
+  res.header("Content-Language","hu");
+  res.status(404).send("404 - A keresett oldal nem található!");
 });
-
-// Szerver indítása
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`Szerver fut http://localhost:${PORT} url-en`);
+app.listen(3000, () => {
+  console.log("A szerver elindult a http://localhost:3000 címen");
 });

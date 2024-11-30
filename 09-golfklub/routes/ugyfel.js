@@ -1,5 +1,6 @@
 import express from "express"; // Express könyvtár importálása
 const router = express.Router();
+import * as db from "../db.js"; // Az adatbázis kapcsolat kódjának betöltése
 
 // Ügyfél létrehozása
 router.post("/register", async (req, res) => {

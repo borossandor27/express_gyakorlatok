@@ -65,7 +65,7 @@ export async function dbInit() {
 }
 // Ügyfél entitás kezelése
 export async function getUgyfelek() {
-  let sql = "SELECT * FROM ugyfel";
+  let sql = "SELECT * FROM ugyfelek";
   try {
     const [rows] = await connection.execute(sql);
     response.success = true;

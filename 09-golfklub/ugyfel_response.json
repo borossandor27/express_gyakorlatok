@@ -10,5 +10,6 @@
     },
     "error":{
        "hibaszoveg":"Mi okozta a hibát?"
-    }
+    },
+      "message":"Sikeres mentés!"
  }
