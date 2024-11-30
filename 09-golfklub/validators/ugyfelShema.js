@@ -25,9 +25,17 @@ export const ugyfelShema = Yup.object({
       .min(6, "legalább 6 karakter")
       .required("A jelszó megadása kötelező."),
     uszuletett: Yup.date()
-      .max(minDate, "Legalább 18 évesnek kell lenned.")
-      .min(maxDate, "Legfeljebb 200 éves lehet.")
-      .required("A születési dátum megadása kötelező."), // 18 évnél idősebb
+      .required("A születési dátum megadása kötelező.")
+      .test(
+        'is-18',
+        'Legalább 18 évesnek kell lenned.',
+        (value) => {
+          if (!value) return false;
+          const today = new Date();
+          const minDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+          return value <= minDate;
+        }
+      ), // 18 évnél idősebb
   }),
   params: Yup.object({
     uazon: Yup.number().required("Événytelen azonosító!"),
