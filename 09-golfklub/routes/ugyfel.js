@@ -7,6 +7,7 @@ import { ugyfelShema } from '../validators/ugyfelShema.js'; // input adatok elle
 router.post("/register",validateRequest(ugyfelShema), async (req, res) => {
   let result= await db.createUgyfel(req.body);
   if (result.success) {
+    result.data.uazon = result.data.insertId;
     res.status(201).json(result.data);
     console.log(result.message);
   } else {

@@ -1,6 +1,6 @@
 //import { expressYupMiddleware } from "express-yup-middleware";
 
-import { query, params, body } from "express";
+//import { query, params, body } from "express";
 import * as Yup from "yup";
 const today = new Date();
 const minDate = new Date(
@@ -38,6 +38,6 @@ export const ugyfelShema = Yup.object({
       ), // 18 évnél idősebb
   }),
   params: Yup.object({
-    uazon: Yup.number().required("Événytelen azonosító!"),
+    //uazon: Yup.number().required("Événytelen azonosító!"),
   })
 });

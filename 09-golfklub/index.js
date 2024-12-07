@@ -39,5 +39,5 @@ app.use((req, res) => {
   res.status(404).send("404 - A keresett oldal nem található!");
 });
 app.listen(3000, () => {
-  console.log("A szerver elindult a http://localhost:3000 címen");
+  console.log("A szerver elindult a http://localhost:3000/golf címen");
 });

@@ -8,7 +8,8 @@ export const validateRequest = (schema) => async (req, res, next) => {
       return next();
     } catch (error) {
       if (error.name === 'ValidationError') {
-        return res.status(400).json({success: false, message: error.details[0].message });
+        console.log(error);
+        return res.status(400).json({success: false, message: error.errors });
       }
       next();
     };
