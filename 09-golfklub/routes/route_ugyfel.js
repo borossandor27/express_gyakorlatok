@@ -1,6 +1,6 @@
 import express from "express"; // Express könyvtár importálása
 const router = express.Router();
-import * as db from "../db.js"; // Az adatbázis kapcsolat kódjának betöltése
+import * as db from "../db/db_ugyfel.js"; // Az adatbázis kapcsolat kódjának betöltése
 import { validateRequest } from '../validators/validator.js'; // input adatok ellenőrzéséhez szükséges függvény importálása
 import { ugyfelShema } from '../validators/ugyfelShema.js'; // input adatok ellenőrzéséhez szükséges séma importálása
 // Ügyfél létrehozása

@@ -7,22 +7,20 @@ app.use(express.urlencoded({ extended: true })); // Űrlapadatok feldolgozásáh
 import cors from "cors"; // CORS middleware importálása
 app.use(cors()); // CORS engedélyezése
 
-import {dbInit} from "./db.js"; // Az adatbázis kapcsolat kódjának betöltése
+import dbInit from "./db.js"; // Az adatbázis kapcsolat kódjának betöltése
 let result = await dbInit(); // kapcsolódás az adatbázishoz
 if (!result.success) {
   console.log(result.message.join("\n"));
   console.log("\nA program leáll!");
   process.exit(1);
 }
-// input adatok elleőrzéséhez szükséges csomag importálása
-import { validateRequest } from './validators/validator.js'; // input adatok ellenőrzéséhez szükséges függvény importálása
 
 
 // Egyed alapú route-ok importálása
-import ugyfelRoutes from "./routes/ugyfel.js";
-import befizetesRoutes from "./routes/befizetes.js";
-import tagsagRoutes from "./routes/tagsag.js";
-import jelenletRoutes from "./routes/jelenlet.js";
+import ugyfelRoutes from "./routes/route_ugyfel.js";
+import befizetesRoutes from "./routes/route_befizetes.js";
+import tagsagRoutes from "./routes/route_tagsag.js";
+import jelenletRoutes from "./routes/route_jelenlet.js";
 
 
 
