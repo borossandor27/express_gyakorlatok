@@ -1,0 +1,43 @@
+
+#images_thumbs {
+    max-height: 15vh; /* A div maximális magassága */
+    display: flex; /* Képek egymás mellé helyezése */
+    align-items: center; /* Képek igazítása a div közepére */
+    
+    width: 80%;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+}
+
+#images_thumbs p> img {
+    max-height: 15vh; /* Képek maximális magassága a div-en belül */
+    height: auto; /* Arányos méretezés fenntartása */
+    width: auto; /* Arányos szélesség biztosítása */
+    object-fit: contain; /* A kép méretezése úgy, hogy ne vágjon le */
+    padding: 0 5px; /* Képek közötti távolság */
+    cursor: pointer;
+    transition: transform 0.2s; /* Képek animációja */
+}
+#images_thumbs p {
+    max-height: 100%; /* Képek maximális magassága a div-en belül */
+    height: auto; /* Arányos méretezés fenntartása */
+    width: auto; /* Arányos szélesség biztosítása */
+    margin: 0 5px; /* Képek közötti távolság */
+    overflow-x: auto; /* Vízszintes görgetés engedélyezése */
+    gap: 10px; /* Képek közötti távolság */
+}
+
+#puzzle-board{
+    display: grid;
+    /* 5 rows, 10 columns */
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    grid-gap: 1px;
+    margin: 0 auto;
+    min-width: 400px;
+    height: auto;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 10px;
+}

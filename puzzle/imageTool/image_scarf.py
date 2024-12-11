@@ -8,8 +8,9 @@ import random
 import os
 
 # Puzzle konfiguráció
-image_path = "K2_Bargiel_ski_RB_02_1920.jpg"  # Add meg a kép nevét
-output_folder = "puzzle_pieces"
+name="tiszta-hegyek_"  # Kép neve
+image_path = name+".jpg"  # Add meg a kép nevét
+output_folder = name+"puzzle_pieces"
 os.makedirs(output_folder, exist_ok=True)
 
 rows, cols = 5, 10  # Rács mérete: 5 sor, 10 oszlop (50 darab)
@@ -45,13 +46,8 @@ for row in range(rows):
         piece = image.crop((x1, y1, x2, y2))
         piece_draw = ImageDraw.Draw(piece)
         
-        # Fogazott élek hozzáadása
-        if col < cols - 1:  # Jobb szél
-            add_jigsaw_edge(piece_draw, piece_size, 0, piece_size, piece_size, horizontal=False)
-        if row < rows - 1:  # Alsó szél
-            add_jigsaw_edge(piece_draw, 0, piece_size, piece_size, piece_size, horizontal=True)
         
         # Darab mentése
-        piece.save(os.path.join(output_folder, f"piece_{row}_{col}.png"))
+        piece.save(os.path.join(output_folder, f"{name}piece_{row}_{col}.png"))
 
 print(f"Fogazott puzzle darabok elmentve a '{output_folder}' mappába!")

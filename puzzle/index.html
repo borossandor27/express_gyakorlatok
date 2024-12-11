@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle játék</title>
+    <link rel="stylesheet" href="puzzle.css">
+    <script src="puzzle.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Puzzle játék</h1>
+    </header>
+    <main>
+        <div id="puzzle-select">
+            <div id="images_thumbs">
+                <p><img src="./images/K2_.jpg" alt="K2 csúcs"></p>
+                <p><img src="./images/mount-everest_.jpg" alt="Csomolungma"></p>
+                <p><img src="./images/tiszta-hegyek_.jpg" alt="Csak hegyek"></p>
+            </div>
+            
+            <!-- a képek 5 sorra és azon belül 10 oszlopra vannak osztva-->
+            
+            <div id="puzzle">
+                <div id="puzzle-container">
+                    <div id="puzzle-board">
+                        <!-- a kép darabjai 5 sorra és azon belül 10 oszlopra vannak osztva-->
+                        <div id="piece_0_0"></div>
+                        <div id="piece_0_1"></div>
+                        <div id="piece_0_2"></div>
+                        <div id="piece_0_3"></div>
+                        <div id="piece_0_4"></div>
+                        <div id="piece_0_5"></div>
+                        <div id="piece_0_6"></div>
+                        <div id="piece_0_7"></div>
+                        <div id="piece_0_8"></div>
+                        <div id="piece_0_9"></div>
+                        <div id="piece_1_0"></div>
+                        <div id="piece_1_1"></div>
+                        <div id="piece_1_2"></div>
+                        <div id="piece_1_3"></div>
+                        <div id="piece_1_4"></div>
+                        <div id="piece_1_5"></div>
+                        <div id="piece_1_6"></div>
+                        <div id="piece_1_7"></div>
+                        <div id="piece_1_8"></div>
+                        <div id="piece_1_9"></div>
+                        <div id="piece_2_0"></div>
+                        <div id="piece_2_1"></div>
+                        <div id="piece_2_2"></div>
+                        <div id="piece_2_3"></div>
+                        <div id="piece_2_4"></div>
+                        <div id="piece_2_5"></div>
+                        <div id="piece_2_6"></div>
+                        <div id="piece_2_7"></div>
+                        <div id="piece_2_8"></div>
+                        <div id="piece_2_9"></div>
+                        <div id="piece_3_0"></div>
+                        <div id="piece_3_1"></div>
+                        <div id="piece_3_2"></div>
+                        <div id="piece_3_3"></div>
+                        <div id="piece_3_4"></div>
+                        <div id="piece_3_5"></div>
+                        <div id="piece_3_6"></div>
+                        <div id="piece_3_7"></div>
+                        <div id="piece_3_8"></div>
+                        <div id="piece_3_9"></div>
+                        <div id="piece_4_0"></div>
+                        <div id="piece_4_1"></div>
+                        <div id="piece_4_2"></div>
+                        <div id="piece_4_3"></div>
+                        <div id="piece_4_4"></div>
+                        <div id="piece_4_5"></div>
+                        <div id="piece_4_6"></div>
+                        <div id="piece_4_7"></div>
+                        <div id="piece_4_8"></div>
+                        <div id="piece_4_9"></div>
+                    </div>
+                </div>
+                <div id="puzzle-info">
+                    <button id="puzzle-start">Indítás</button>
+                    <button id="puzzle-solve">Megoldás</button>
+                    <div id="puzzle-message"></div>
+                </div>
+            </div>
+    </main>
+</body>
+
+</html>
