@@ -12,3 +12,31 @@ h1{
     margin: 0;
     padding: 0.5em;
 }
+#sheet {
+    width: 90%;
+    margin: 0 auto;
+    padding: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px #ccc;
+}
+#chart{
+    width: 90%;
+    margin: 0 auto;
+    padding: 3%;
+}
+#myChart{
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+}
+footer{
+    text-align: center;
+    font-size: 0.8em;
+    color: #666;
+    margin: 1em 0;
+}
+footer a{
+    color: darkred;
+    text-decoration: none;
+}

@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const minXValue = Math.min(...xValues);
     const maxXValue = Math.max(...xValues);
     const minYValue = Math.min(...yValues);
-    const maxYValue = Math.max(...yValues);
+    const maxYValue = Math.max(...yValues)*1.1;
     var ctx = canvas.getContext("2d");
     var chart = new Chart(ctx, {
       type: "line",
@@ -55,6 +55,12 @@ document.addEventListener("DOMContentLoaded", function () {
           y: {
             min: minYValue,
             max: maxYValue,
+          },
+        },
+        elemements: {
+          point: {
+            radius: 5,
+            style: 'triangle',
           },
         },
       },
