@@ -1,8 +1,5 @@
 BGSZC Logisztikai és Kereskedelmi Technikum és Szakképző Iskola 13.C osztályában a backend tantárgy Express keretrendszerhez tervezett órai anyagainak a példa programjai.
 
-Itt van az **express_vazlat.docx** tartalmának átalakítása Markdown formátumú README.md fájlba:
-
-```markdown
 # ES6 (JavaScript) alapok
 
 ## Egyszerű adattípusok
