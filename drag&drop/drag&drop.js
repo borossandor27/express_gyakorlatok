@@ -12,20 +12,24 @@ images.forEach(img => {
 });
 
 targetDivs.forEach(div => {
+    // dragover - A húzott elem érvényes ledobási cél fölé ért
     div.addEventListener("dragover", e => {
         e.preventDefault(); // Engedélyezés a drop-ra
     });
+    // drop - A húzott elemet ledobják
     div.addEventListener("drop", e => {
         e.preventDefault();
         const imgAlt = e.dataTransfer.getData("text");
-        const img = document.querySelector(`img[alt="${imgAlt}"]`);
-        if (img) {
-            div.appendChild(img); // A képet az adott div-hez rendeljük
-        }
+        // Ha a div id-ja megegyezik a kép alt-jával, akkor a képet a div-hez rendeljük  
+
+        if (div.id === imgAlt) {
+            const img = sources.querySelector(`img[alt="${imgAlt}"]`);
+            div.appendChild(img);
+        } 
     });
 });
 
-// Ha a kép nem egy div-re esik, visszahelyezzük az eredeti forrásba
+// Ha a kép nem a megfelelő div-re esik, visszahelyezzük az eredeti forrásba
 document.addEventListener("dragend", e => {
     const img = e.target;
     if (img.tagName === "IMG" && !img.parentElement.matches("#targets div")) {
