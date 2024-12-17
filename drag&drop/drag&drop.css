@@ -1,0 +1,26 @@
+#sources, #targets {
+  width: auto;
+  height: 200px;
+  border: 1px solid #000;
+  overflow: auto;
+  padding: 0.5em;
+}
+#sources img{
+  float: left;
+  width: auto;
+  height: 100%;
+  border: 1px solid #000;
+  overflow: auto;
+}
+#targets div {
+  float: left;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #000;
+  overflow: auto;
+  background-color: #f0f0f0;
+}
+#targets div img {
+  width: auto;
+  height: 100%;
+}
