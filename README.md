@@ -500,83 +500,124 @@ function corsMiddleware(req, res, next) {
 ```
 
 ## Adatbázis integráció
+Az express nem közvetlenül kapcsolódik az adatbázisokhoz, de a middleware-k használatával lehetővé teszi, hogy könnyedén integrálj adatbázis-kapcsolatokat (*pl. MySQL*) egy webalkalmazásba.
 
 ### MySQL adatbázis közvetlen elérésére middleware segítségével
+Az `express` keretrendszerben a **MySQL** adatbázis elérésére a `mysql`, `mysql2` és `mysql2/promise` middleware-k használhatók. 
+
+A `mysql2` a `mysql` könyvtár modern alternatívája, amely számos további funkciót kínál, és jobb teljesítményt nyújt. A `mysql2` támogatja a Promise-okat és az async/await szintaxist is.
+
+**Bővített szolgáltatások:**
+- Minden, amit a mysql kínál, de jobb teljesítménnyel.
+- Promise támogatás (*a mysql2/promise segítségével*).
+- Előkészített lekérdezések (*prepared statements*) támogatása.
+- Kompatibilitás a mysql könyvtárral.
+- Jobb hibakezelés és konfigurációs lehetőségek.
+
+### Különbségek a `pool` és a `connection` között
+
+**Pool:**
+- Több kapcsolatot kezel egyszerre, ami hatékonyabb forráskezelést tesz lehetővé.
+- Ideális nagy terhelésű alkalmazásokhoz, ahol sok egyidejű kérés érkezik.
+- A kapcsolatokat automatikusan kezeli (*pl. visszaadja a készletbe a használat után*).
+
+**Connection:**
+- Egyetlen kapcsolatot kezel, egyszerűbb használati esetekhez ideális.
+- Kisebb alkalmazásokhoz vagy egyszerű lekérdezésekhez használható.
+- Manuálisan kell kezelni a kapcsolatot (*pl. lezárni a használat után*).
+
 ```javascript
-const express = require('express');
-const mysql = require('mysql2');
-const app = express();
-const port = 3000;
+const mysql = require('mysql2/promise');
 
-// MySQL kapcsolat létrehozása
-const db = mysql.createConnection({
- host: 'localhost', // Az adatbázis szerver címe
- user: 'root', // MySQL felhasználó
- password: '', // MySQL jelszó
- database: 'pizza' // Az adatbázis neve
-});
+async function main() {
+  // Kapcsolatkészlet létrehozása
+  const pool = mysql.createPool({
+    host: 'localhost',
+    user: 'root',
+    password: 'password',
+    database: 'test',
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+  });
 
-// Kapcsolat indítása
-db.connect((err) => {
- if (err) {
-   console.error('Hiba történt a MySQL kapcsolódás során: ', err);
-   return;
- }
- console.log('Csatlakozás a MySQL adatbázishoz sikeres.');
-});
+  try {
+    // Kapcsolat kérése a készletből
+    const connection = await pool.getConnection();
 
-// GET kérés, amely JSON formátumban küldi vissza a vevő adatokat
-app.get('/vevok', (req, res) => {
- const sql = 'SELECT * FROM vevo'; // SQL lekérdezés
- db.query(sql, (err, results) => {
-   if (err) {
-     console.error('Hiba a lekérdezés során: ', err);
-     res.status(500).json({ error: 'Adatbázis hiba' });
-     return;
-   }
-   res.json(results); // Az eredményt JSON formátumban küldjük vissza
- });
-});
+    // SQL lekérdezés végrehajtása
+    const [rows] = await connection.query('SELECT * FROM users');
+    console.log(rows);
 
-// Az alkalmazás elindítása
-app.listen(port, () => {
- console.log(`Az alkalmazás fut a http://localhost:${port} címen.`);
-});
+    // Kapcsolat visszaadása a készletbe
+    connection.release();
+  } catch (err) {
+    console.error('Hiba történt:', err);
+  } finally {
+    // Kapcsolatkészlet lezárása
+    await pool.end();
+  }
+}
+
+main();
 ```
 
-### ORM használata
-- Mongoose
-- Sequelize
-- Prisma
-- Objection.js
-- TypeORM
+### ORM *(Object-Relational Mapping)* használata
+Az ORM *(Object-Relational Mapping)* eszközök nagyban leegyszerűsítik az adatbázis-műveleteket azáltal, hogy az adatbázis táblákat objektumokként kezelik, és lehetővé teszik, hogy JavaScript kóddal interaktálj az adatbázissal. Az Express-hez számos ORM érhető el, de a választás függ a projekt igényeitől, az adatbázis típusától és a személyes preferenciáktól.
 
-Ebben a tanévben (2024/25) ezt fogjuk tanulni.
+- [**Sequelize**](https://sequelize.org/) *Ebben a tanévben (2024/25) ezt fogjuk tanulni.*
+- [**Prisma**](https://www.prisma.io/)
+- [**Objection.js**](https://vincit.github.io/objection.js/)
+- [**TypeORM**](https://typeorm.io/)
+- [**Knex.js**](https://knexjs.org/)
+
+### [Sequelize](https://sequelize.org/)
+A Sequelize egy teljes értékű, Promise-alapú ORM, amely támogatja a PostgreSQL, MySQL, MariaDB, SQLite és SQL Server adatbázisokat. 
+
+```javascript
+const { Sequelize, DataTypes } = require('sequelize');
+const sequelize = new Sequelize('database', 'username', 'password', {
+  host: 'localhost',
+  dialect: 'mysql'
+});
+
+const User = sequelize.define('User', {
+  username: DataTypes.STRING,
+  email: DataTypes.STRING
+});
+
+(async () => {
+  await sequelize.sync();
+  const user = await User.create({ username: 'john', email: 'john@example.com' });
+  console.log(user.toJSON());
+})();
+```
 
 ### Gyakorlat
 - Hozz létre egy alkalmazást, amely adatokat kér le és tárol egy adatbázisban.
-- Integrálj egy MongoDB, SQLite vagy MySQL adatbázist az alkalmazásba.
-- Töltsd le az adatokat az adatbázisból (pl. felhasználói adatokat) és jelenítsd meg őket a REST API-n keresztül.
+- Integrálj egy MySQL adatbázist az alkalmazásba.
+- Töltsd le az adatokat az adatbázisból *(pl. felhasználói adatokat)* és jelenítsd meg őket a `REST API`-n keresztül.
 - Adatok beillesztése és frissítése az adatbázisban a POST és PUT műveletek segítségével.
+- Adatok törlése a DELETE művelettel
 
 ## Sablonmotorok használata
 A sablonmotor jelentősen megkönnyíti a kód és az adatok elválasztását, a weboldalak dinamikussá tételét, valamint a fejlesztés gyorsítását. A sablon fájlokat a `views` mappában szokás tárolni. Az Express támogat több sablonmotort.
 
-### EJS (Embedded JavaScript)
+### [EJS *(Embedded JavaScript)*](https://ejs.co/)
 - `<% %>` és `<%= %>` jelölésekkel dolgozik.
 - A `<% %>` kódot futtat, de nem jelenít meg tartalmat.
 - A `<%= %>` kódot futtat, és megjeleníti a kifejezés értékét HTML-ben, HTML-eszképelt formában.
 - Egyszerű és közvetlen, támogatja a vezérlési szerkezeteket, mint a ciklusok és feltételek (például `for`, `if`).
 
-### Handlebars.js
+### [Handlebars.js](https://handlebarsjs.com/)
 - Használja a „mustache” stílusú kódot `{{ }}`, amely egyszerű és tiszta megjelenést ad.
-- Támogatja a segédfüggvényeket (helpers) és a részsablonokat, amik segítenek a sablon felépítésében és újrafelhasználhatóságában.
+- Támogatja a segédfüggvényeket *(helpers)* és a részsablonokat, amik segítenek a sablon felépítésében és újrafelhasználhatóságában.
 
-### Pug (korábban Jade)
+### Pug *(korábban Jade)*
 - Különleges és tömör, HTML-típusú kóddal dolgozik, ahol a behúzások számítanak, így kevesebb zárójelet használ.
 - Egyszerű logikai műveletek, ciklusok és feltételek elérhetők benne, valamint részletes CSS és JavaScript támogatás.
 
-### Mustache
+### [Mustache](https://www.npmjs.com/package/mustache)
 - „Mustache” stílusú, `{{ }}` jelölés használatával, ami tiszta, de logikamentes sablonokat eredményez.
 - Minimális logika, mivel a sablonmotor nem támogat ciklusokat vagy feltételeket – ezek JavaScript-ből jönnek.
 - Egyszerű adatmegjelenítéshez használják, mivel a sablonok nem bonyolíthatók túlságosan.
