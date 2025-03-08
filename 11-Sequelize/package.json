@@ -1,0 +1,21 @@
+{
+  "name": "11-sequelize",
+  "version": "1.0.0",
+  "description": "A `Sequelize` egy teljes értékű, Promise-alapú ORM, amely támogatja a PostgreSQL, MySQL, MariaDB, SQLite és SQL Server adatbázisok kezelését `Node.js`-ben. Nagyon népszerű az Express közösségben. A modellek, kapcsolatok, tranzakciók és migrációk használatával teljes körűen kezelheted az adatbázisodat. Ajánlott a hivatalos dokumentáció és a közösségi források tanulmányozása.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mysql2": "^3.13.0",
+    "sequelize": "^6.37.6"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.2"
+  }
+}
