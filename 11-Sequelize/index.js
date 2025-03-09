@@ -1,52 +1,49 @@
 import express from 'express';
-import { Sequelize, DataTypes, Model } from 'sequelize';
+import { sequelize } from './database.js';
+import { Futar } from './models/Futar.js';
+import { Pizza } from './models/Pizza.js';
+import { Vevo } from './models/Vevo.js';
+import { Rendeles } from './models/Rendeles.js';
+import { Tetel } from './models/Tetel.js';
 
-const sequelize = new Sequelize('pizza', 'root', '', {
-    host: 'localhost',
-    dialect: 'mysql'
-});
+async function initDatabase() {
+    try {
+        await sequelize.sync(); // Meglévő struktúrát nem törli, csak létrehozza, ha még nincs
+        console.log('Adatbázis szinkronizálva.');
+    } catch (error) {
+        console.error('Hiba az adatbázis szinkronizálásakor:', error);
+    } finally {
+        await sequelize.close();
+    }
+}
 
-class Futar extends Model {}
-Futar.init({
-    fazon: { type: DataTypes.INTEGER.UNSIGNED, primaryKey: true, autoIncrement: true },
-    fnev: { type: DataTypes.STRING(25), allowNull: false },
-    ftel: { type: DataTypes.STRING(15), allowNull: false }
-}, { sequelize, modelName: 'futar', timestamps: false });
+initDatabase();
+async function resetDatabase() {
+    try {
+        await sequelize.sync({ force: true }); // FIGYELEM! Minden adat törlődik!
+        console.log('Az adatbázis újralétrehozva.');
+    } catch (error) {
+        console.error('Hiba az adatbázis újralétrehozásakor:', error);
+    } finally {
+        await sequelize.close();
+    }
+}
 
-class Pizza extends Model {}
-Pizza.init({
-    pazon: { type: DataTypes.INTEGER.UNSIGNED, primaryKey: true, autoIncrement: true },
-    pnev: { type: DataTypes.STRING(15), allowNull: false },
-    par: { type: DataTypes.INTEGER, allowNull: false }
-}, { sequelize, modelName: 'pizza', timestamps: false });
+// resetDatabase(); Minden adat törlődik!
+async function updateDatabase() {
+    try {
+        await sequelize.sync({ alter: true }); // Megőrzi az adatokat, de frissíti a táblákat
+        console.log('Az adatbázis frissítve.');
+    } catch (error) {
+        console.error('Hiba az adatbázis frissítésekor:', error);
+    } finally {
+        await sequelize.close();
+    }
+}
 
-class Vevo extends Model {}
-Vevo.init({
-    vazon: { type: DataTypes.INTEGER.UNSIGNED, primaryKey: true, autoIncrement: true },
-    vnev: { type: DataTypes.STRING(30), allowNull: false },
-    vcim: { type: DataTypes.STRING(30), allowNull: false }
-}, { sequelize, modelName: 'vevo', timestamps: false });
+// updateDatabase();
 
-class Rendeles extends Model {}
-Rendeles.init({
-    razon: { type: DataTypes.INTEGER.UNSIGNED, primaryKey: true, autoIncrement: true },
-    vazon: { type: DataTypes.INTEGER.UNSIGNED, references: { model: Vevo, key: 'vazon' } },
-    fazon: { type: DataTypes.INTEGER.UNSIGNED, references: { model: Futar, key: 'fazon' } },
-    idopont: { type: DataTypes.DATE, allowNull: false }
-}, { sequelize, modelName: 'rendeles', timestamps: false });
 
-class Tetel extends Model {}
-Tetel.init({
-    razon: { type: DataTypes.INTEGER.UNSIGNED, references: { model: Rendeles, key: 'razon' } },
-    pazon: { type: DataTypes.INTEGER.UNSIGNED, references: { model: Pizza, key: 'pazon' } },
-    db: { type: DataTypes.INTEGER, allowNull: false }
-}, { sequelize, modelName: 'tetel', timestamps: false });
-
-// Model kapcsolatok
-Rendeles.belongsTo(Vevo, { foreignKey: 'vazon' });
-Rendeles.belongsTo(Futar, { foreignKey: 'fazon' });
-Tetel.belongsTo(Rendeles, { foreignKey: 'razon' });
-Tetel.belongsTo(Pizza, { foreignKey: 'pazon' });
 
 const app = express();
 app.use(express.json());
