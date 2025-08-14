@@ -1,0 +1,2 @@
+# Fokozott biztonságú szerver
+

@@ -8,7 +8,7 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Adatbázis helyettesítése memóriában tárolt objektummal
+// Adatbázis helyettesítése memóriában tárolt objektummal, mert jelenleg nem feladat a tárolás
 const secretsDB = {};
 
 // Secret modell
