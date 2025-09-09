@@ -766,9 +766,9 @@ Ingyenes CORS proxy szerverek:
 ### Böngésző bővítmények
 Kikapcsolják a CORS ellenőrzést, de ez csak fejlesztés alatt ajánlott.
 
-## Biztonság - input validáció
+## [Biztonság - input validáció](./05-Validalas/)
 Az npm-el nagyon sok már sokak által használt ellenőrző könyvtárat vehetünk használatba. Ezek közül néhány:
-- Yup
+- [Yup](https://www.npmjs.com/package/express-yup-middleware)
 - Zod
 - Joi
 - Validator.js
@@ -784,7 +784,7 @@ A rugalmasság, áttekinthetőség, könnyű javítás miatt célszerű az egyed
 ### Gyakorlat
 - Implementálj alapvető hibakezelést és biztonsági middleware-t (pl. Helmet).
 
-## Autentikáció és jogosultságkezelés
+## [Autentikáció és jogosultságkezelés](./71-Auth/)
 ### Hitelesítés
 Tanuld meg, hogyan implementálhatsz hitelesítést (pl. JSON Web Token vagy session alapú hitelesítés).
 
@@ -798,9 +798,8 @@ Kezeld a felhasználói jogosultságokat a különböző API végpontokon.
 - Védj le egyes útvonalakat, hogy csak bejelentkezett felhasználók férhessenek hozzájuk.
 - Kezeld a session-öket az express-session csomag segítségével.
 
-## File feltöltés kezelése
-### Cél
-Megismerni, hogyan kezelhetünk fájlokat Express alkalmazásban.
+## [File feltöltés kezelése](./12-FileUpload/)
+Az Express.js-ben a fájlfeltöltés kezeléséhez többféle megközelítés létezik, de a legegyszerűbb és leggyakoribb módja egy köztes szoftver (middleware) használata, mint például a [Multer](https://www.npmjs.com/package/multer). A Multer kifejezetten a multipart/form-data formátum kezelésére lett tervezve, ami a fájlfeltöltés szabványos módja a webes űrlapokon.
 
 ### Gyakorlat
 - Implementálj egy fájlfeltöltést, amely lehetővé teszi képek vagy dokumentumok feltöltését a szerverre a multer middleware segítségével.
@@ -811,7 +810,7 @@ Megismerni, hogyan kezelhetünk fájlokat Express alkalmazásban.
 Adatok lapozásának és rendezésének kezelése.
 
 ### Gyakorlat
-- Készíts egy útvonalat, ahol nagy mennyiségű adatot kell lapozni (pl. felhasználók listája), és adj hozzá lapozást (pagination).
+- Készíts egy útvonalat, ahol nagy mennyiségű adatot kell lapozni (*pl. felhasználók listája*), és adj hozzá lapozást (*pagination*).
 - Add hozzá a rendezési (sorting) lehetőséget egy lekérdezési paraméter alapján (pl. ?sort=name).
 
 ## Tesztelés és telepítés
@@ -819,14 +818,13 @@ Adatok lapozásának és rendezésének kezelése.
 Tanuld meg, hogyan tesztelheted az Express alkalmazásod automatikusan (pl. Mocha, Chai vagy Jest segítségével).
 
 ### Telepítés
-Ismerkedj meg a telepítési folyamatokkal, pl. hogyan telepíthetsz alkalmazást Heroku-ra vagy más cloud platformra.
+Ismerkedj meg a telepítési folyamatokkal, pl. hogyan telepíthetsz alkalmazást [Heroku](https://www.heroku.com/)-ra vagy más cloud platformra.
 
 ### Gyakorlat
 - Írj teszteket az API végpontjaidhoz, majd telepítsd az alkalmazásodat egy felhőszolgáltatóra.
 
 ## További források
-- Express.js hivatalos dokumentáció
-- Node.js hivatalos dokumentáció
-- MDN Web Docs
-- W3Schools JavaScript
-
+- [Express.js hivatalos dokumentáció](https://expressjs.com/)
+- [Node.js hivatalos dokumentáció](https://nodejs.org/en)
+- [MDN Web Docs](https://developer.mozilla.org/en-US/)
+- [W3Schools JavaScript](https://www.w3schools.com/js/)
