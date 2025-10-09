@@ -1,6 +1,6 @@
 BGSZC Logisztikai és Kereskedelmi Technikum és Szakképző Iskola 13.C osztályában a backend tantárgy Express keretrendszerhez tervezett órai anyagainak a példa programjai.
 
-# ES6 (JavaScript) alapok
+# ES6 (*JavaScript*) alapok
 
 ## Egyszerű adattípusok
 
@@ -12,7 +12,52 @@ const azonosito = Symbol('id');
 A paraméterként megadott szöveg csak hibakeresésre használható. Nem iterálható.
 
 ### Number
+
+A JavaScript szabványos `Number` típusa 64-bites lebegőpontos formátumot (IEEE 754) használ. 
+
+### Különleges Numerikus Értékek
+
+A JavaScript `Number` adattípusa magában foglal néhány speciális értéket is, amelyeket numerikusnak tekint:
+
+- **Infinity**: Végtelen, amely akkor jön létre, ha egy pozitív számot nullával osztunk, vagy egy nagyon nagy pozitív számot érünk el. Példa: 1 / 0 eredménye `Infinity`.
+
+- **NaN (Not a Number)**: Egy speciális numerikus érték, amely érvénytelen vagy definiálhatatlan matematikai művelet eredményeként jön létre (*pl. szöveg osztása számmal*). Fontos tudni, hogy a `NaN` típusa is number a JavaScriptben. Példa: 'hello' / 2 eredménye NaN.
+
+**Ellenőrzés**
+
+Egy változó numerikus jellegét a `typeof` operátorral ellenőrizheted:
+```JavaScript
+let egesz = 42;
+let tort = 3.14;
+let specialis = NaN;
+
+console.log(typeof egesz);     // "number"
+console.log(typeof tort);      // "number"
+console.log(typeof specialis); // "number"
+```
+
+### BigInt
+
+A `Number` típusa 64-bites lebegőpontos formátumot (IEEE 754) használ. Ez azt jelenti, hogy csak egy maximális (`Number.MAX_SAFE_INTEGER`) és egy minimális (`Number.MIN_SAFE_INTEGER`) biztonságos egész számot képes pontosan tárolni. Ez ~15 decimális számjegyet jelent.
+
+A `BigInt` egy viszonylag új (ES2020) primitív adattípus a JavaScriptben, amelyet arra terveztek, hogy a szabványos Number adattípus korlátainál nagyobb **tetszőleges pontosságú egész számokat** képes tárolni.
+
+**BigInt értékeket kétféleképpen hozhatsz létre:**
+1. Szám után írt `n` betűvel:
+
+```JavaScript
+const nagySzam = 1234567890123456789012345678901234567890n;
+console.log(typeof nagySzam); // "bigint"
+```
+2. A `BigInt()` konstruktorral:
+```JavaScript
+const masikNagySzam = BigInt("9007199254740992"); // 2^53
+console.log(masikNagySzam); // 9007199254740992n
+```
+> ℹ️ A `BigInt` és `Number` típusok nem keverhetők közvetlenül!
+
 ### String
+
 ### Boolean
 
 ## Összetett adattípusok
@@ -39,7 +84,14 @@ ok( Object.getPrototypeOf(obj) === null, 'Nincsen prototype objektuma' );
 ```
 
 ### Tömbök (Array)
-Rendezett lista (indexek alapján), ahol minden elemnek van egy numerikus indexe (nullától kezdődően). Hivatkozás: `array[0]`.
+
+- **Rendezett listák**: Az elemek sorrendje megmarad, és indexszel (0-tól kezdve) érhetők el.
+
+- **Dinamikusak**: A méretük futás közben változtatható.
+
+- **Heterogének**: Különböző típusú elemeket tárolhatnak (számokat, stringeket, objektumokat, függvényeket stb.).
+
+- **Objektumok**: Technikailag a tömbök a JavaScriptben speciális objektumok, amelyek a `Array.prototype`-ból öröklik metódusaikat.
 
 ## Operátorok
 Operátorok

@@ -25,6 +25,7 @@ A `req.file` objektum a következő információkat tartalmazza:
 A Multer nemcsak egyetlen fájl kezelésére képes, hanem több fájl (`upload.array()`), vagy akár különböző nevű fájlmezők (`upload.fields()`) feldolgozására is.
 
 ## Fájl méretének és típusának korlátozása
+
 A Multer beállításainál szűrőket is megadhatunk, például korlátozhatjuk a feltöltött fájl méretét vagy [típusát](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types).
 
 ```JavaScript
