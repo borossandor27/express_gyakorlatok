@@ -1,5 +1,16 @@
 {
+  "name": "03-recivedatas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
   "dependencies": {
-    "express": "^4.21.1"
+    "cookie-parser": "^1.4.7",
+    "express": "^4.21.2",
+    "multer": "^2.0.2"
   }
 }

@@ -1,0 +1,21 @@
+{
+  "name": "all_in_one",
+  "version": "1.0.0",
+  "description": "User API – JWT autentikációval és middleware lánccal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["express", "middleware", "jwt", "authentication", "api"],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.1"
+  }
+}
