@@ -20,12 +20,13 @@
     Az alkalmazásban a felhasználók adatait a következőképpen lehet lekérdezni:
     GET /users
 */
-var express = require("express");
-var app = express();
-var port = 3000;
-app.use(express.json()); //-- JSON törzs (body) feldolgozása
-var users = require("./users.json"); //-- Felhasználók adatainak betöltése
-const { validUser } = require('./tools');
+import users from "./users.json" with { type: "json" };//-- Felhasználók adatainak betöltése
+import express from 'express';
+import { validUser } from './tools.js'; //-- Felhasználó ellenőrző függvény importálása
+const app = express();
+const port = 3000;
+app.use(express.json()); //-- A body tartalmának JSON formátumba alakítása
+
 //-- saját készítésű middleware függvény, amely a kérés adatait logolja a konzolra
 app.use(function(req, res, next) {
     console.log("Request URL:", req.originalUrl);
@@ -39,9 +40,9 @@ app.use(function(req, res, next) {
 app.use(function(req, res, next) {
     //-- felhasználó belépésének ellenőrzése
     if (validUser(req.query.username, req.query.password)) {
-        next();
+        next(); // a felhasználó létezik, továbblépés a következő middleware-re vagy útvonalkezelőre
     } else {
-        res.status(401).send("Nem vagy bejelentkezve!");
+        res.status(401).send("Nem vagy bejelentkezve!"); // a send() metódus automatikusan lezárja a választ, megszakítja a feldolgozást!
     }
 });
 
@@ -49,6 +50,7 @@ app.use(function(req, res, next) {
 app.get("/users", function(req, res) {
     res.json(users);
 });
+
 app.get("/users/:id", function(req, res) {
     let user = users.find(u => u.id == req.params.id);
     if (user) {

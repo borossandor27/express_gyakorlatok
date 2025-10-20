@@ -1,5 +1,4 @@
-// app.js
-const log = require('./logger');
+import log from './logger.js';
 
 log("Starting the application...");
 // Kezdődik az alkalmazás logika
