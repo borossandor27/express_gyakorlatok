@@ -6,7 +6,7 @@ Ha valamilyen szolgáltatást engedélyhez kötünk, akkor **MINDEN** művelet e
 
 ## [Bearer Tokens](./Bearer_Tokens/)
 
-## OAuth2 Authentication
+## [OAuth2 Authentication](./OAuth2/)
 
 ## [JWT Tokens](./JWT/)
 
