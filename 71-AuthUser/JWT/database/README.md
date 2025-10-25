@@ -1,4 +1,5 @@
 # JWT *(JSON Web Token)* alapú hitelesítés
+
 SPA alkalmazások esetén felhasználó azonosításra igen gyakori megoldás backend oldalon az *(Express + MySQL + bcrypt + JWT)* összeállítás.
 - A felhasználó bejelentkezéskor kap egy JWT tokent a backend szervertől.
 - A tokent a böngészőben (pl. localStorage vagy sessionStorage) tárolhatod.
