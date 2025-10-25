@@ -4,7 +4,7 @@ Ha valamilyen szolgáltatást engedélyhez kötünk, akkor **MINDEN** művelet e
 
 ## [Basic Authentication](./Basic/)
 
-## Bearer Tokens
+## [Bearer Tokens](./Bearer_Tokens/)
 
 ## OAuth2 Authentication
 
