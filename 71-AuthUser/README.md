@@ -2,6 +2,10 @@
 
 Ha valamilyen szolgáltatást engedélyhez kötünk, akkor **MINDEN** művelet előtt be kell azonosítani a kérést kérő személyét.
 
+## Session vs JWT
+
+![Session vs JWT ábra](session_vs_JWT.png)
+
 ## [Basic Authentication](./Basic/)
 
 ## [Bearer Tokens](./Bearer_Tokens/)
@@ -10,6 +14,22 @@ Ha valamilyen szolgáltatást engedélyhez kötünk, akkor **MINDEN** művelet e
 
 ## [JWT Tokens](./JWT/)
 
-## ACCESS and Refresh Tokens
+## Access Tokens *(Hozzáférési Token)*
+
+- **Célja**: Engedélyezés *(Authorization)*. Az erőforrás-szervernek *(pl. az API-nak)* szól, és igazolja, hogy a kliens (alkalmazás) jogosult a felhasználó nevében bizonyos műveletek végrehajtására *(adatok olvasása, írása, stb.)*.
+
+- **Formátum**: Gyakran JWT (JSON Web Token) formátumú Bearer Token.
+
+- **Használat**: Minden egyes, védett erőforrásra irányuló HTTP kérésnél el kell küldeni az `Authorization: Bearer <Access Token>`-t a fejlécben.
+
+- **Élettartam**: Rövid. Általában percektől órákig terjed *(pl. 5 perc, 1 óra)*. A rövid élettartam növeli a biztonságot. Ha egy Access Token-t ellopnak, az csak rövid ideig használható a támadáshoz.
+
+## Refresh Tokens
+
+- **Célja**: Új Access Token kérése az engedélyező szervertől, hogy a felhasználói munkamenet hosszabb ideig tartson anélkül, hogy a felhasználónak újra be kellene jelentkeznie a felhasználónévvel és jelszóval.
 
 ## Single Sign-On (SSO) and Identity Protocols
+
+A Single Sign-On (SSO) egy olyan hitelesítési séma, amely lehetővé teszi a felhasználó számára, hogy egyetlen bejelentkezéssel (azaz egyszeri hitelesítő adatok megadásával) több, egymástól független rendszerhez vagy alkalmazáshoz is hozzáférjen.
+
+pl. Microsoft 365
