@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested JSON küldés</title>
+</head>
+
+<body>
+    <h1>Nested JSON küldés</h1>
+    <form action="http://localhost:3000/submit" method="POST">
+        <input type="text" name="user[name]" value="Tomi">
+        <input type="text" name="user[age]" value="18">
+        <button type="submit">Küldés</button>
+    </form>
+</body>
+
+</html>
