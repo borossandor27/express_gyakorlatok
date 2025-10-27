@@ -374,15 +374,15 @@ Ha a `import {myModule} from './myModule';` utasítással hivatkozunk
 
 1. **Fájlt keres a project gyökerében az alábbi sorrendben:**
    - 1. myModule
-   - 1. myModule.js  
-   - 1. myModule.json
-   - 1. myModule.node
+   - 2. myModule.js  
+   - 3. myModule.json
+   - 4. myModule.node
 
 2. **Ha nem talál, akkor mappát keres:**
    - 1. myModule/package.json *(keresi a `main` mezőt)*
-   - 1. myModule/index.js
-   - 1. myModule/index.json
-   - 1. myModule/index.node
+   - 2. myModule/index.js
+   - 3. myModule/index.json
+   - 4. myModule/index.node
 
 3. **Ha nem talált, akkor `Module not found` üzenetet ad**
 
