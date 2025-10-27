@@ -217,11 +217,11 @@ Egy callback függvény egy olyan függvény, amelyet egy másik függvény para
 - **find**: Tömbök, elem értéke, első elem keresése adott feltétellel
 - **findIndex**: Tömbök, elem indexe, első elem indexének keresése
 
-# Node.js alapok
+# `Node.js` alapok
 
 ## Telepítés
 
-A Node.js honlapról le lehet tölteni az alapot. További kiegészítőket vagy az npm vagy az npx segítségével érhetsz el.
+A `Node.js` honlapról le lehet tölteni az alapot. További kiegészítőket vagy az npm vagy az npx segítségével érhetsz el.
 
 A Windows biztonsági beállításai gyakran blokkolják a szkriptek futtatását ezért érdemes a felhasználónak megadni a jogot. [bővebben](https://www.netiq.com/documentation/appmanager-modules/appmanagerforwindows/data/b116b7hm.html)
 
@@ -229,13 +229,13 @@ A Windows biztonsági beállításai gyakran blokkolják a szkriptek futtatásá
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 ```
 
-### npm (Node Package Manager)
+### npm *(Node Package Manager)*
 
-Az npm egy csomagkezelő, amelyet a Node.js csomagok telepítésére, frissítésére és eltávolítására használnak. Az npm segítségével telepíthetsz csomagokat globálisan vagy lokálisan a projektedben.
+Az `npm` egy csomagkezelő, amelyet a `Node.js` csomagok telepítésére, frissítésére és eltávolítására használnak. Az npm segítségével telepíthetsz csomagokat globálisan vagy lokálisan a projektedben.
 
 ### npx *(Node Package Runner)*
 
-Az npx egy eszköz, amely lehetővé teszi csomagok futtatását anélkül, hogy előzetesen telepítenénk őket. Az npx segítségével futtathatsz csomagokat közvetlenül az npm registry-ből, vagy a projektedben lokálisan telepített csomagokat.
+Az `npx` egy eszköz, amely lehetővé teszi csomagok futtatását anélkül, hogy előzetesen telepítenénk őket. Az npx segítségével futtathatsz csomagokat közvetlenül az npm registry-ből, vagy a projektedben lokálisan telepített csomagokat.
 
 ## Modulok közötti hivatkozások
 
@@ -243,7 +243,7 @@ A Node.js-ben minden fájl egy külön modulnak tekinthető. A modulok lehetőv�
 
 Nagyobb méretű alkalmazásoknál sok fájl keletkezhet, ezért nagyon fontos, hogyan nevezzük el a fájlokat. **Használjunk kisbetűket**, a szavakat válasszuk el kötőjellel a jobb olvashatóság miatt.
 
-A Node.js támogatja a CommonJS és az ECMAScript modulokat is. A CommonJS modulok esetében a `require` és `module.exports` szintaxist használjuk, míg az ECMAScript moduloknál az `import` és `export` szintaxist.
+A `Node.js` támogatja a CommonJS és az ECMAScript modulokat is. A CommonJS modulok esetében a `require` és `module.exports` szintaxist használjuk, míg az ECMAScript moduloknál az `import` és `export` szintaxist.
 
 ### CommonJS és ECMAScript modulok példák
 
@@ -351,9 +351,41 @@ modul.fuggvenyKetto(); // Kimenet: Ez a második függvény
 console.log(modul.konstansErtek); // Kimenet: 42
 ```
 
+### Module Resolution Algorithm
+
+#### 1. Core Modulok
+
+Először a Node.js ellenőrzi, hogy a kért modul beépített modul-e (pl. `fs`, `path`, `http`).
+
+```javascript
+import fs from 'fs'; // core modul
+import myModule from './myModule'; // helyi modul
+```
+
+#### 1. Relatív és Abszolút Útvonalak
+
+- `./` vagy `../` kezdet: relatív útvonal az aktuális fájlhoz képest
+- `/` kezdet: abszolút útvonal
+- Nem `/`, `./`, `../` kezdet: node_modules-ból keresi
+
+#### Fájl keresési szabály
+
+Ha a `import {myModule} from './myModule';` utasítással hivatkozunk
+
+1. Fájlt keres a poject gyökerében keres az alábbi sorrendben:
+   1. myModule
+   1. myModule.js
+   1. myModule.json
+   1. myModule.node
+1. Ha nem talál, akkor mappát keres
+    1. myModule/package.json *(keresi a `main` mezőt)*
+    1. myModule/index.js
+    1. myModule/index.json
+    1. myModule/index.node
+
 ## Promise használata
 
-A Node.js filozófiájának alapja az **aszinkron működés**. A `promise`-t egy olyan érték helyettesítőjeként definiáljuk, amely végül elérhetővé válik. Az ES2015-ben vezették be, most pedig az ES2017-ben az aszinkron funkciók váltották fel őket.
+A `Node.js` filozófiájának alapja az **aszinkron működés**. A `promise`-t egy olyan érték helyettesítőjeként definiáljuk, amely végül elérhetővé válik. Az ES2015-ben vezették be, most pedig az ES2017-ben az aszinkron funkciók váltották fel őket.
 
 Amint egy ígéret létrejön, függő állapotba kerül. Ez azt jelenti, hogy a hívó függvény folytatja a végrehajtást, miközben várja az ígéretet, hogy elvégezze a saját feldolgozását, és visszajelzést adjon a hívó függvénynek. Egy ponton a hívó függvény arra vár, hogy feloldott vagy elutasított állapotban kapja vissza az ígéretet, de a függvény folytatja a végrehajtást, amíg az ígéret működik.
 
@@ -361,7 +393,7 @@ Amint egy ígéret létrejön, függő állapotba kerül. Ez azt jelenti, hogy a
 
 ### Express telepítése
 
-Kezdd egy új Node.js projekt létrehozásával, majd telepítsd az Express-t:
+Kezdd egy új `Node.js` projekt létrehozásával, majd telepítsd az Express-t:
 
 ```bash
 npm install express

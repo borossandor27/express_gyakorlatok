@@ -5,12 +5,15 @@ Ha valamilyen szolgáltatást engedélyhez kötünk, akkor **MINDEN** művelet e
 ## Session vs JWT
 
 ![Session vs JWT ábra](session_vs_JWT.png)
+
 | Szempont             | Session azonosítás (Stateful)                                                                                           | JWT azonosítás (Stateless)                                                                       |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | Fő különbség         | A szerver tárolja az állapotot.                                                                                         | A token tárolja az állapotot.                                                                    |
 | Fő előny             | Könnyű visszavonás (kijelentkezés).                                                                                     | Könnyű horizontális skálázás.                                                                    |
 | Folyamatok           | Szinkron és Aszinkron is.                                                                                               | Szinkron és Aszinkron is.                                                                        |
 | Helyes megfogalmazás | Nagyobb terhelést jelent a szinkron/elosztott környezetekben, ahol az állapotot szinkronizálni kell a szerverek között. | Ideális a skálázható/elosztott rendszerekhez, amelyek jól kezelik a rövid élettartamú tokeneket. |
+
+A JWT legfőbb előnye tehát a session azonosítással szemben a könnyebb skálázhatóságban és az állapotmentességben jelentkezik. Mindkét mechanizmus használható mind szinkron, mind aszinkron webes kommunikációban.
 
 ## [Basic Authentication](./Basic/)
 
