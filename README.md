@@ -368,7 +368,7 @@ import myModule from './myModule'; // helyi modul
 - `/` kezdet: abszolút útvonal
 - Nem `/`, `./`, `../` kezdet: node_modules-ból keresi
 
-#### Fájl keresési szabály
+#### Modul keresési szabály
 
 Ha a `import {myModule} from './myModule';` utasítással hivatkozunk
 
@@ -407,7 +407,7 @@ npm install express
 Egy egyszerű "Hello World" üzenetet ad vissza.
 
 ```javascript
-const express = require('express');
+import express from 'express';
 const app = express();
 const port = 3000;
 
