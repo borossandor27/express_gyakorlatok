@@ -609,7 +609,7 @@ const morgan = require('morgan');
 app.use(morgan('combined')); // Naplózza a kéréseket
 ```
 
-- **Hibakezelő middleware**: Ez egy speciális típusú middleware, amelyet a hibák kezelésére használnak. Egy hiba middleware-t négy paraméterrel definiálnak: `err`, `req`, `res` és `next`. Ezek csak akkor hívódnak meg, ha valami hiba történik az alkalmazásban. Ha nem talál ilyet, akkor az Express alapértelmezett hibakezelője lép működésbe, azaz a kliens felé `500 Internal Server Error` választ küld, és a hibaüzenetet *(stack trace)* — fejlesztési módban — ki is írja a böngészőbe.
+- **Hibakezelő middleware**: Ez egy speciális típusú middleware, amelyet a hibák kezelésére használnak. Egy hiba middleware az alábbi paramétereket fogadhatja: `err`, `req`, `res` és `next`. Az `err` objektum csak a middleware-be való belépéskor jön létre. Az alkalmazás akkor keresi meg, ha valami hibát észlel. Ha nem talál ilyen szignatúrájú middleware-t, akkor az Express alapértelmezett hibakezelője lép működésbe, azaz a kliens felé `500 Internal Server Error` választ küld, és a hibaüzenetet *(stack trace)* — fejlesztési módban — ki is írja a böngészőbe.
 
   Hibakezelő objektum több féle képpen jöhet létre:
 
@@ -636,7 +636,7 @@ app.use(morgan('combined')); // Naplózza a kéréseket
 Példa hibakezelő middleware-re:
 
 ```javascript
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
  console.error(err.stack);
  res.status(500).send('Valami elromlott!');
 });
