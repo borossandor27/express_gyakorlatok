@@ -626,12 +626,12 @@ Hibakezelő objektum több féle képpen jöhet létre:
         res.send('OK');
       });
       ```
-    - Kézzel dobott hiba
-      ```javascript
-      app.get('/hiba', (req, res) => {
-        throw new Error('Valami elromlott!');
-      });
-      ```
+  - Kézzel dobott hiba
+    ```javascript
+    app.get('/hiba', (req, res) => {
+      throw new Error('Valami elromlott!');
+    });
+    ```
 
 Példa hibakezelő middleware-re:
 
