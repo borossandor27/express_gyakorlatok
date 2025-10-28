@@ -609,12 +609,46 @@ const morgan = require('morgan');
 app.use(morgan('combined')); // Naplózza a kéréseket
 ```
 
-- **Hiba middleware**: Ez egy speciális típusú middleware, amelyet a hibák kezelésére használnak. Egy hiba middleware-t négy paraméterrel definiálnak: `err`, `req`, `res` és `next`. Ezek csak akkor hívódnak meg, ha valami hiba történik az alkalmazásban.
+- **Hibakezelő middleware**: Ez egy speciális típusú middleware, amelyet a hibák kezelésére használnak. Egy hiba middleware-t négy paraméterrel definiálnak: `err`, `req`, `res` és `next`. Ezek csak akkor hívódnak meg, ha valami hiba történik az alkalmazásban. Ha nem talál ilyet, akkor az Express alapértelmezett hibakezelője lép működésbe, azaz a kliens felé `500 Internal Server Error` választ küld, és a hibaüzenetet *(stack trace)* — fejlesztési módban — ki is írja a böngészőbe.
+
+Hibakezelő objektum több féle képpen jöhet létre:
+    - Az Express saját belső komponensei is generálhatnak hibát
+    - next(err) hívással átadott hiba. pl.:
+      ```javascript
+      app.get('/adat', (req, res, next) => {
+      const id = req.query.id;
+        if (!id) {
+          // Itt nem dobunk hibát, hanem továbbítjuk
+          return next(new Error('Hiányzó ID paraméter'));
+        }
+        res.send('OK');
+      });
+      ```
+    - Kézzel dobott hiba
+      ```javascript
+      app.get('/hiba', (req, res) => {
+        throw new Error('Valami elromlott!');
+      });
+      ```
+
+Példa hibakezelő middleware-re:
 
 ```javascript
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
  console.error(err.stack);
  res.status(500).send('Valami elromlott!');
+});
+```
+
+>__NOTE__ async hibákat nem tud kezelni! async függvényben mindig használjuk a `try...catch` utasítást! pl.:
+
+```javascript
+app.get('/async', async (req, res, next) => {
+  try {
+    throw new Error('Ez már eljut a hibakezelőhöz!');
+  } catch (err) {
+    next(err);
+  }
 });
 ```
 
