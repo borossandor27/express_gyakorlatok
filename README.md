@@ -612,8 +612,10 @@ app.use(morgan('combined')); // Naplózza a kéréseket
 - **Hibakezelő middleware**: Ez egy speciális típusú middleware, amelyet a hibák kezelésére használnak. Egy hiba middleware-t négy paraméterrel definiálnak: `err`, `req`, `res` és `next`. Ezek csak akkor hívódnak meg, ha valami hiba történik az alkalmazásban. Ha nem talál ilyet, akkor az Express alapértelmezett hibakezelője lép működésbe, azaz a kliens felé `500 Internal Server Error` választ küld, és a hibaüzenetet *(stack trace)* — fejlesztési módban — ki is írja a böngészőbe.
 
 Hibakezelő objektum több féle képpen jöhet létre:
-    - Az Express saját belső komponensei is generálhatnak hibát
-    - next(err) hívással átadott hiba. pl.:
+
+  -  Az Express saját belső komponensei is generálhatnak hibát
+  - `next(err)` hívással átadott hiba. pl.:
+
       ```javascript
       app.get('/adat', (req, res, next) => {
       const id = req.query.id;
