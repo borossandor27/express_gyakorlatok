@@ -10,7 +10,6 @@ function adatValidalas(req, res, next) {
     next();
 }
 
-
 app.post('/data', adatValidalas, (req, res) => {
     res.status(200).json({ message: 'Data received successfully' });
 });
