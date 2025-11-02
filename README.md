@@ -1,87 +1,104 @@
-BGSZC Logisztikai és Kereskedelmi Technikum és Szakképző Iskola 13.C osztályában a backend tantárgy Express keretrendszerhez tervezett órai anyagainak a példa programjai.
-
 # ES6 (JavaScript) alapok
 
 ## Egyszerű adattípusok
 
 ### Symbol
+
 Ha egy objektumon belül kulcsokat szeretnél létrehozni, amelyek garantáltan nem ütköznek más kulcsokkal, a Symbol erre tökéletes.
-```javascript
-const azonosito = Symbol('id');
-```
+
+  ```javascript
+  const azonosito = Symbol('id');
+  ```
+
 A paraméterként megadott szöveg csak hibakeresésre használható. Nem iterálható.
 
 ### Number
+
 ### String
+
 ### Boolean
 
 ## Összetett adattípusok
 
 ### Objektumok (Object)
+
 Kulcs-érték párokat tárol. Hivatkozás: `objektum.név`, vagy `objektum['név']`. Metódusok: `Object.keys()`, `Object.values()`, `Object.entries()`.
 Dinamikus és prototípus-objektumok.
-```javascript
-// Minta
-var obj = {};
-// Teszt
-ok( typeof obj === 'object', 'Objektum jött létre' );
-ok( Object.getPrototypeOf(obj) === Object.prototype, 'A prototípus az Object.prototype' );
-// Üres objektumliterállal kompatibilis objektum létrehozása
-var obj = Object.create(Object.prototype);
-// Teszt
-ok( typeof obj === 'object', 'Objektum jött létre' );
-ok( Object.getPrototypeOf(obj) === Object.prototype, 'A prototípus objektum az Object.prototype' );
-// Prototípus nélküli objektum létrehozása
-var obj = Object.create(null);
-// Teszt
-ok( typeof obj === 'object', 'Objektum jött létre' );
-ok( Object.getPrototypeOf(obj) === null, 'Nincsen prototype objektuma' );
-```
+
+  ```javascript
+  // Minta
+  var obj = {};
+  // Teszt
+  ok( typeof obj === 'object', 'Objektum jött létre' );
+  ok( Object.getPrototypeOf(obj) === Object.prototype, 'A prototípus az Object.prototype' );
+  // Üres objektumliterállal kompatibilis objektum létrehozása
+  var obj = Object.create(Object.prototype);
+  // Teszt
+  ok( typeof obj === 'object', 'Objektum jött létre' );
+  ok( Object.getPrototypeOf(obj) === Object.prototype, 'A prototípus objektum az Object.prototype' );
+  // Prototípus nélküli objektum létrehozása
+  var obj = Object.create(null);
+  // Teszt
+  ok( typeof obj === 'object', 'Objektum jött létre' );
+  ok( Object.getPrototypeOf(obj) === null, 'Nincsen prototype objektuma' );
+  ```
 
 ### Tömbök (Array)
+
 Rendezett lista (indexek alapján), ahol minden elemnek van egy numerikus indexe (nullától kezdődően). Hivatkozás: `array[0]`.
 
 ## Operátorok
+
 Operátorok
 
 ## Elágazó utasítások
 
 ### Nyíl függvény
+
 A `function() {}` helyett az ES6 vagy ECMAScript 2015-ben bevezették a `() => {}` jelölést, amely nem csak jelölésben tér el az elődjétől.
 
 #### Implicit visszatérés
+
 A nyílfüggvények implicit visszaadást tesznek lehetővé: az értékek `return` kulcsszó használata nélkül kerülnek visszaadásra.
 
 #### 'this' működése
+
 A `this` értékét mindig is a környezete (kontextus) határozza meg. Emiatt a nyíl függvények nem használhatóak objektum metódusként.
-```javascript
-const car = {
- model: 'Fiesta',
- manufacturer: 'Ford',
- fullName: () => {
-   return `${this.manufacturer} ${this.model}`
- }
-}
-```
+
+  ```javascript
+  const car = {
+  model: 'Fiesta',
+  manufacturer: 'Ford',
+  fullName: () => {
+    return `${this.manufacturer} ${this.model}`
+  }
+  }
+  ```
+
 Ebben a kódban `car.fullName()` nem fog működni, és a következőt adja vissza "undefined undefined".
 
 Ez az események kezelése során is lehet probléma. A DOM eseményfigyelők `this` célelemként vannak beállítva, és ha `this`-re az eseménykezelőben hivatkozunk:
-```javascript
-const link = document.querySelector('#link')
-link.addEventListener('click', () => {
- // this === window
-})
-```
-akkor egy hagyományos funkcióra van szükség:
-```javascript
-const link = document.querySelector('#link')
-link.addEventListener('click', function() {
- // this === link
-})
-```
 
-### Spread operátor ...
+  ```javascript
+  const link = document.querySelector('#link')
+  link.addEventListener('click', () => {
+  // this === window
+  })
+  ```
+
+akkor egy hagyományos funkcióra van szükség:
+
+  ```javascript
+  const link = document.querySelector('#link')
+  link.addEventListener('click', function() {
+  // this === link
+  })
+  ```
+
+### Spread operátor `...`
+
 Az iterálható objektumokat (pl. listák, tömbök, sztringek) kibontja (objektum destrukturálás). Hasonló funkciókat tartalmaznak a Ruby, Python és PHP nyelvek is.
+
 ```javascript
 const arr1 = [1, 2, 3];
 const arr2 = [4, 5, 6];
@@ -95,8 +112,10 @@ const numbers = [1, 2, 3];
 console.log(sum(...numbers)); // Output: 6
 ```
 
-### Rest Operátor …
+### Rest Operátor `…`
+
 Több argumentum vagy tömb elem összegyűjtése egyetlen változóba. Paraméter átadásnál rendkívül megnöveli az átláthatóságot, egyszerűbb kódolást tesz lehetővé.
+
 ```javascript
 function sum(...numbers) {
  return numbers.reduce((acc, curr) => acc + curr, 0);
@@ -109,7 +128,9 @@ console.log(rest); // Output: [2, 3, 4]
 ```
 
 ### Template Literals ~ AltGr+7 ~ backtick
+
 Az ES2015 / ES6 újdonsága, karakterláncok kezelésére. Segítségével több soros szövegeket is tárolhatunk, a `\n` szekvencia begépelése nélkül. Egyszerűen interpolálhatunk kifejezéseket a szövegbe.
+
 ```javascript
 const myVariable = 'test'
 const string = `something ${myVariable}` //something test
@@ -119,12 +140,15 @@ const string2 = `something ${doSomething() ? 'x' : 'y'}`
 ```
 
 ### Callback function
+
 Egy callback függvény egy olyan függvény, amelyet egy másik függvény paramétereként adunk át, és amelyet az adott függvény belsejében hívnak meg, hogy valamilyen műveletet vagy rutint hajtsanak végre. A callback függvények egyaránt lehetnek szinkron vagy aszinkron jellegűek.
 
 ## Iterációk
 
 ### Iterációs utasítás
+
 Milyen típusokon használható, visszatérési érték, mikor használjuk:
+
 - **for**: Bármilyen, nincs, általános célú iteráció
 - **while**: Bármilyen, nincs, feltételes iteráció, nem ismert vég
 - **do...while**: Bármilyen, nincs, legalább egyszer futnia kell
