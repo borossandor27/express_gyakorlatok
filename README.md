@@ -352,6 +352,8 @@ A fenti utasítással egy alap beállítást adhatunk az alkalmazásunkhoz. Vala
 }
 ```
 
+A csomagkezelő egy `package-lock.json` fájlban tárolja a részletes modul függőségeket. Ez automatikusan létrejön. Kézzel való szerkesztése nem ajánlott.
+
 Bővebben a hivatalos dokumentáció [itt](https://docs.npmjs.com/cli/v7/configuring-npm/package-json) olvasható.
 
 ### Express telepítése
