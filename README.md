@@ -201,7 +201,7 @@ A `yarn`-t a Facebook fejlesztette ki 2016-ban, hogy megoldja az akkori npm-ben 
 
 A Node.js-ben minden fájl egy külön modulnak tekinthető. A modulok lehetővé teszik a kód szervezését és újrahasználhatóságát. Törekedni kell arra, hogy egy fájlban ne legyen száz sor. Az alkalmazást területekre kell bontani és az adott területhez tartozó függvényeket és változókat egy fájlban elhelyezni.
 
-Nagyobb méretű alkalmazásoknál sok fájl keletkezhet, ezért nagyon fontos, hogyan nevezzük el a fájlokat. Használjunk kisbetűket, a szavakat válasszuk el kötőjellel a jobb olvashatóság miatt. 
+Nagyobb méretű alkalmazásoknál sok fájl keletkezhet, ezért nagyon fontos, hogyan nevezzük el a fájlokat. Használjunk kisbetűket, a szavakat válasszuk el kötőjellel a jobb olvashatóság miatt.
 
 A Node.js támogatja a CommonJS és az ECMAScript modulokat is. A CommonJS modulok esetében a `require` és `module.exports` szintaxist használjuk, míg az ECMAScript moduloknál az `import` és `export` szintaxist.
 
@@ -333,6 +333,24 @@ A `package.json` fájlt tartalmazza a project fontosabb paramétereit. Fontos me
   ```bash
   npm init -y
   ```
+
+A fenti utasítással egy alap beállítást adhatunk az alkalmazásunkhoz. Valami ehhez hasonlót:
+
+```json
+{
+  "name": "my-node-app",
+  "version": "1.0.0",
+  "description": "A simple Node.js app",
+  "main": "index.js",
+  "type": "module", // or "commonjs"
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "keywords": ["example", "package", "node"],
+}
+```
 
 Bővebben a hivatalos dokumentáció [itt](https://docs.npmjs.com/cli/v7/configuring-npm/package-json) olvasható.
 
