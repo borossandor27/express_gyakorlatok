@@ -876,9 +876,11 @@ Access-Control-Allow-Headers: Content-Type, apikey
 ```
 
 #### A tényleges kérés (Actual Request)
+
 Ha az előzetes ellenőrzés sikeres, a böngésző elküldi a tényleges kérést az adatok lekéréséhez vagy módosításához.
 
 ### Gyakori CORS fejlécek
+
 - **Access-Control-Allow-Origin**: Meghatározza, hogy mely originről érkező kérések engedélyezettek. Ha minden origin számára engedélyezett, az értéke lehet *, de biztonsági okokból ez nem mindig ajánlott.
 - **Access-Control-Allow-Methods**: A szerver által engedélyezett HTTP metódusok (pl. GET, POST, PUT, DELETE).
 - **Access-Control-Allow-Headers**: Mely egyéni HTTP-fejléceket engedélyez a szerver.
@@ -886,27 +888,32 @@ Ha az előzetes ellenőrzés sikeres, a böngésző elküldi a tényleges kéré
 - **Access-Control-Allow-Credentials**: Ha a szerver megköveteli, hogy a kérések tartalmazzanak hitelesítési adatokat (pl. sütiket), ez a fejlécnek true értéket kell tartalmaznia.
 
 ### CORS gyakori problémák
+
 - **Nincs megfelelő CORS fejléc**: Ha a szerver nem válaszol a megfelelő CORS fejléc nélkül, a böngésző automatikusan blokkolja a kérést.
 - **Előzetes ellenőrzés hibája**: Ha a böngésző egy preflight kérést küld, de a szerver nem adja meg a megfelelő válaszfejléceket (például hiányzik az Access-Control-Allow-Headers vagy Access-Control-Allow-Methods), a kérés blokkolódik.
 - **Wildcard * használata Access-Control-Allow-Origin-ben**: Ha hitelesítési adatokkal (pl. sütik) dolgozol, nem használhatsz * értéket az Access-Control-Allow-Origin fejlécben, mivel biztonsági okokból csak konkrét origin lehet megadva.
 
 ### Hogyan oldhatod meg a CORS problémákat?
+
 Több megoldás is lehetséges a böngészők beépített védelmének kikapcsolására az alkalmazásunk tesztelésénél.
 
 #### Szerver oldali változtatások
+
 A CORS szabályok beállítása a szerveren történik. Győződj meg arról, hogy a szerver válaszai tartalmazzák a megfelelő CORS fejléceket.
 
 #### CORS Middleware használata
-```javascript
-const cors = require('cors');
-app.use(cors({
- origin: ['http://localhost:80', 'http://localhost:5500'], // Allowed origins
- methods: ['GET', 'POST', 'OPTIONS'], // Allowed methods
- allowedHeaders: ['Content-Type'] // Allowed headers
-}));
-```
+
+  ```javascript
+  const cors = require('cors');
+  app.use(cors({
+  origin: ['http://localhost:80', 'http://localhost:5500'], // Allowed origins
+  methods: ['GET', 'POST', 'OPTIONS'], // Allowed methods
+  allowedHeaders: ['Content-Type'] // Allowed headers
+  }));
+  ```
 
 #### Kézi fejléc beállítása
+
 ```javascript
 app.use((req, res, next) => {
  res.header('Access-Control-Allow-Origin', 'http://localhost:80');
@@ -917,17 +924,22 @@ app.use((req, res, next) => {
 ```
 
 #### CORS proxy használata
+
 Ingyenes CORS proxy szerverek:
+
 - CorsProxy.io
 - CORS.SH
 - HTMLDriven
 
 ### Böngésző bővítmények
+
 Kikapcsolják a CORS ellenőrzést, de ez csak fejlesztés alatt ajánlott.
 
 ## Biztonság - input validáció
+
 Az npm-el nagyon sok már sokak által használt ellenőrző könyvtárat vehetünk használatba. Ezek közül néhány:
-- Yup
+
+- **Yup**
 - Zod
 - Joi
 - Validator.js
@@ -940,17 +952,22 @@ Mi a Yup-nak a használatával fogunk ismerkedni. (https://www.npmjs.com/package
 
 A rugalmasság, áttekinthetőség, könnyű javítás miatt célszerű az egyedekhez tartozó sémákat létrehozni és ezeket saját készítésű és „gyári” middleware-ek segítségével ellenőriztetni.
 
-### Gyakorlat
+### Gyakorlat hibakezelésre
+
 - Implementálj alapvető hibakezelést és biztonsági middleware-t (pl. Helmet).
 
 ## Autentikáció és jogosultságkezelés
+
 ### Hitelesítés
+
 Tanuld meg, hogyan implementálhatsz hitelesítést (pl. JSON Web Token vagy session alapú hitelesítés).
 
 ### Jogosultságok kezelése
+
 Kezeld a felhasználói jogosultságokat a különböző API végpontokon.
 
-### Gyakorlat
+### Gyakorlat hitelesítésre
+
 - Hozz létre egy bejelentkezési rendszert, ahol felhasználók tokenek segítségével tudnak autentikálni.
 - Készíts egy egyszerű bejelentkezési rendszert, ahol a felhasználók regisztrálhatnak és bejelentkezhetnek.
 - Használj JWT-t (JSON Web Token) a hitelesítéshez és a védett útvonalakhoz.
@@ -958,34 +975,34 @@ Kezeld a felhasználói jogosultságokat a különböző API végpontokon.
 - Kezeld a session-öket az express-session csomag segítségével.
 
 ## File feltöltés kezelése
-### Cél
-Megismerni, hogyan kezelhetünk fájlokat Express alkalmazásban.
 
-### Gyakorlat
+### Gyakorlat fájlok fogadására
+
 - Implementálj egy fájlfeltöltést, amely lehetővé teszi képek vagy dokumentumok feltöltését a szerverre a multer middleware segítségével.
 - A feltöltött fájlokat tárold egy dedikált mappában, és jelenítsd meg őket egy oldalon.
 
 ## Paginating és Sorting egy API-ban
-### Cél
+
 Adatok lapozásának és rendezésének kezelése.
 
-### Gyakorlat
+### Gyakorlat a találatok lapozására
+
 - Készíts egy útvonalat, ahol nagy mennyiségű adatot kell lapozni (pl. felhasználók listája), és adj hozzá lapozást (pagination).
 - Add hozzá a rendezési (sorting) lehetőséget egy lekérdezési paraméter alapján (pl. ?sort=name).
 
 ## Tesztelés és telepítés
+
 ### Tesztelés
-Tanuld meg, hogyan tesztelheted az Express alkalmazásod automatikusan (pl. Mocha, Chai vagy Jest segítségével).
 
-### Telepítés
-Ismerkedj meg a telepítési folyamatokkal, pl. hogyan telepíthetsz alkalmazást Heroku-ra vagy más cloud platformra.
+(pl. Mocha, Chai vagy Jest segítségével).
 
-### Gyakorlat
+### Gyakorlat alkalmazás tesztelésre
+
 - Írj teszteket az API végpontjaidhoz, majd telepítsd az alkalmazásodat egy felhőszolgáltatóra.
 
 ## További források
-- Express.js hivatalos dokumentáció
-- Node.js hivatalos dokumentáció
-- MDN Web Docs
-- W3Schools JavaScript
 
+- [Express.js](https://expressjs.com/en/starter/installing.html) hivatalos dokumentáció
+- [Node.js](https://nodejs.org/en) hivatalos dokumentáció
+- [MDN Web Docs](https://developer.mozilla.org/en-US/)
+- [W3Schools JavaScript](https://www.w3schools.com/js/)
