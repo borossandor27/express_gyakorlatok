@@ -175,7 +175,7 @@ Az npm egy csomagkezelő, amelyet a Node.js csomagok telepítésére, frissíté
 
 ### [npx](https://www.npmjs.com/package/npx-run) *(Node Package Runner)*
 
-Az npx egy eszköz, amely lehetővé teszi csomagok futtatását anélkül, hogy előzetesen telepítenénk őket. Az npx segítségével futtathatsz csomagokat közvetlenül az npm registry-ből, vagy a projektedben lokálisan telepített csomagokat.
+Az npx egy eszköz, amely lehetővé teszi csomagok **futtatását** anélkül, hogy előzetesen telepítenénk őket. Az npx segítségével futtathatsz csomagokat közvetlenül az npm registry-ből, vagy a projektedben lokálisan telepített csomagokat.
 
 ### [pnpm](https://www.npmjs.com/package/pnpm)
 
@@ -192,6 +192,10 @@ telepítése:
   ```bash
   npm install -g pnpm
   ```
+
+### yarn
+
+A `yarn`-t a Facebook fejlesztette ki 2016-ban, hogy megoldja az akkori npm-ben tapasztalt teljesítmény- és konzisztenciaproblémákat. Jól működik TypeScript projektekkel is.
 
 ## Modulok közötti hivatkozások
 
