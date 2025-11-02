@@ -173,17 +173,23 @@ A Node.js honlapról le lehet tölteni az alapot. További kiegészítőket vagy
 
 Az npm egy csomagkezelő, amelyet a Node.js csomagok telepítésére, frissítésére és eltávolítására használnak. Az npm segítségével telepíthetsz csomagokat globálisan vagy lokálisan a projektedben.
 
+### yarn *(**Y**et **A**nother **R**esource **N**egotiator)*
+
+A `yarn`-t a Facebook fejlesztette ki 2016-ban, hogy megoldja az akkori npm-ben tapasztalt teljesítmény- és konzisztenciaproblémákat. Jól működik TypeScript projektekkel is.
+
+A YARN parancssori felülete hasonló az NPM-hez, de néhány különbséggel és fejlesztéssel. Ugyanazt a package.json fájlt használja, mint az NPM, de hozzáad egy másik, `yarn.lock` nevű fájlt, amely zárolja a függőségek pontos verzióit. Létrehoz egy node_modules mappát is, ahol a telepített csomagokat tárolja.
+
 ### [npx](https://www.npmjs.com/package/npx-run) *(Node Package Runner)*
 
 Az npx egy eszköz, amely lehetővé teszi csomagok **futtatását** anélkül, hogy előzetesen telepítenénk őket. Az npx segítségével futtathatsz csomagokat közvetlenül az npm registry-ből, vagy a projektedben lokálisan telepített csomagokat.
 
-### [pnpm](https://www.npmjs.com/package/pnpm)
+### [pnpm](https://www.npmjs.com/package/pnpm) *(Performant Node Package Manager)*
 
-A pnpm kulcsa az, hogy hogyan kezeli a node_modules mappát. Ellentétben az npm-mel és a Yarn régebbi verzióival, amelyek minden egyes projektbe külön lemásolják a függőségeket:
+A PNPM a leggyorsabb csomagkezelő, ezt követi a YARN, majd az NPM. Ez azért van, mert a PNPM egy újszerű megközelítést, az úgynevezett `symlinked node_modules`-t használ, amely kemény linkeket hoz létre a csomagok globális tárolójához ahelyett, hogy azokat minden projektbe másolja. Ez lemezterületet takarít meg és csökkenti a duplikációt. A YARN szintén globális gyorsítótárat használ a csomagokhoz, de továbbra is minden projektbe másolja azokat. Az NPM nem használ semmilyen gyorsítótárazási mechanizmust, így minden csomagot letölt és telepít minden alkalommal.
 
-- **Központi tárolás** (Content-Addressable Store): Amikor először telepít egy csomagot (pl. lodash), a pnpm elmenti azt a lemezen egy egyetlen, megosztott, globális tárolóba. Ez a tároló a gépén található (általában a felhasználói mappában), és a hash-címe alapján azonosítja a csomagot.
+- **Központi tárolás** *(Content-Addressable Store)*: Amikor először telepít egy csomagot (pl. lodash), a pnpm elmenti azt a lemezen egy egyetlen, megosztott, globális tárolóba. Ez a tároló a gépén található *(általában a felhasználói mappában)*, és a hash-címe alapján azonosítja a csomagot.
 
-- **Hard Links**: Amikor egy projektben telepíti ugyanazt a csomagot (lodash), ahelyett, hogy lemásolná azt, a pnpm létrehoz egy hard linket (merev hivatkozást) a projekt node_modules mappájában lévő fájlok és a központi tárolóban lévő eredeti fájlok között.
+- **Hard Links**: Amikor egy projektben telepíti ugyanazt a csomagot (lodash), ahelyett, hogy lemásolná azt, a pnpm létrehoz egy hard linket *(merev hivatkozást)* a projekt node_modules mappájában lévő fájlok és a központi tárolóban lévő eredeti fájlok között.
 
 - **Helytakarékosság**: Mivel a hard linkek csak mutatók az eredeti fájlokra, nem foglalnak el extra lemezterületet. Ha 100 különböző projekt használja ugyanazt a csomagverziót, az a lemezen csak egyszer lesz tárolva!
 
@@ -192,10 +198,6 @@ telepítése:
   ```bash
   npm install -g pnpm
   ```
-
-### yarn
-
-A `yarn`-t a Facebook fejlesztette ki 2016-ban, hogy megoldja az akkori npm-ben tapasztalt teljesítmény- és konzisztenciaproblémákat. Jól működik TypeScript projektekkel is.
 
 ## Modulok közötti hivatkozások
 
