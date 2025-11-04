@@ -386,7 +386,7 @@ Készíts egy alapvető Express szervert, ami egy egyszerű "Hello World" üzene
 
 ### URL paraméterek és lekérdezési paraméterek kezelése
 
-Az Express-ben az adatok fogadásának főbb módjai a következők:
+Az Express-ben a klienstől érkező adatok fogadásának fontosabb lehetőségei a következők:
 
 #### Lekérdezési paraméterek *(req.query)*
 
@@ -399,6 +399,28 @@ Az Express-ben az adatok fogadásának főbb módjai a következők:
   });
   ```
 
+##### Használhatsz speciális karaktereket, amik hasonlóan működnek, mint a regex
+
+  | Jelölés | Jelentés                                          |
+  | ------- | ------------------------------------------------- |
+  | `?`     | Az előző karakter opcionális                      |
+  | `+`     | Az előző karakter legalább egyszer szerepel       |
+  | `*`     | Az előző karakter 0 vagy több alkalommal szerepel |
+  | `()`    | Csoportosítás                                     |
+  | `:`     | Paraméterdefiníció *(nem regex, de fontos)*       |
+  | `.`     | Bármilyen karakter *(csak teljes regexnél)*       |
+
+##### Példa helyettesítő karakterekre
+
+  | Minta                         | Jelentés                                | Példa URL            |
+  | ----------------------------- | --------------------------------------- | -------------------- |
+  | `/user/:id`                   | Dinamikus paraméter *(nem regex)*       | `/user/42`           |
+  | `/user/:id([0-9]+)`           | Regex paraméter *(csak számok)*         | `/user/123`          |
+  | `/file/:name(.+\.txt)`        | Csak `.txt` fájlnevek                   | `/file/readme.txt`   |
+  | `/ab*cd`                      | `a` + `b` 0 vagy több alkalommal + `cd` | `/abcd`, `/abbbbbcd` |
+  | `/a(bc)?d`                    | `a` + opcionális `bc` + `d`             | `/ad`, `/abcd`       |
+  | `/:countrycode([A-Za-z]{3})`  | `{3}` pontosan három betűt engedélyez   | `/country/HUN`       |
+  
 #### Útvonal paraméterek *(req.params)*
 
   ```javascript
