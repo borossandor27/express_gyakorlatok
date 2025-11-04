@@ -313,6 +313,18 @@ index.js:
   console.log(modul.konstansErtek); // Kimenet: 42
   ```
 
+## Modul Feloldási Algoritmus *(Module Resolution Algorithm)*
+
+A Modul Feloldási Algoritmus *(Module Resolution Algorithm)* az a folyamat, amelyet a Node.js *(vagy más JavaScript futtatókörnyezetek és build eszközök, pl. Webpack)* használ annak meghatározására, hogy egy import vagy require() utasításban megadott modulnév vagy útvonal melyik tényleges fájlra vonatkozik a fájlrendszeren.
+
+  1. **Core Modulok**: Ellenőrzi, hogy a hivatkozás egy beépített (core) Node.js modul-e *(pl. fs, path, http)*. Ha igen, azt tölti be
+  1. **Fájl Útvonal**: Ha a hivatkozás (`X`) egy relatív (./, ../) vagy abszolút (/, C:\\) útvonal, az algoritmus megpróbálja közvetlenül betölteni:
+    a) Fájlként: `X`
+    b) Fájlként kiterjesztéssel: `X.js`, `X.json`, `X.node` *(vagy a modul típusához tartozó kiterjesztéssel, pl. .mjs)*
+    c) Könyvtárként: Megpróbálja betölteni az `X/package.json` fájlt *(és ott a `main` mező által megadott fájlt)*, vagy az `X/index.js` fájlt.
+  1. **`node_modules`**: Ha X nem abszolút vagy relatív útvonal *(azaz egy modulnév, pl. axios)*, akkor a Node.js elkezdi keresni azt a `node_modules` könyvtárban.
+  __NOTE__ A keresés a jelenlegi könyvtárból indul, és felfelé halad a szülőkönyvtárak felé, minden szinten megkeresve a `node_modules/X` mappát, amíg el nem éri a gyökérkönyvtárat.
+
 ## Promise használata
 
 A Node.js filozófiájának alapja az aszinkron működés. A promise-t egy olyan érték helyettesítőjeként definiáljuk, amely végül elérhetővé válik. Az ES2015-ben vezették be, most pedig az ES2017-ben az aszinkron funkciók váltották fel őket.
