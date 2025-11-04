@@ -45,7 +45,7 @@ Dinamikus és prototípus-objektumok.
 
 ### Tömbök (Array)
 
-Rendezett lista (indexek alapján), ahol minden elemnek van egy numerikus indexe (nullától kezdődően). Hivatkozás: `array[0]`.
+Rendezett lista *(indexek alapján)*, ahol minden elemnek van egy numerikus indexe *(nullától kezdődően)*. Hivatkozás: `array[0]`.
 
 ## Operátorok
 
@@ -167,7 +167,7 @@ Milyen típusokon használható, visszatérési érték, mikor használjuk:
 
 ## Telepítés
 
-A Node.js honlapról le lehet tölteni az alapot. További kiegészítőket vagy az npm vagy az npx segítségével érhetsz el.
+A Node.js honlapról le lehet tölteni az alapot. További kiegészítőket valamelyik csomagkezelő segítségével érhetsz el. pl.: [npmjs.com](https://www.npmjs.com/). Mindegyik csomagkezelő az `npm registry`-ből dolgozik.
 
 ### [npm](https://www.npmjs.com/package/npm) *(Node Package Manager)*
 
