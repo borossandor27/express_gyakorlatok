@@ -54,6 +54,10 @@ app.get('/cities', async (req, res) => {
     }
 });
 
+app.use((req, res) => {
+    res.status(404).send('Az oldal használata: /cities?countryId={országkód} (pl. http://localhost:3000/cities?countryId=HU)');
+});
+
 app.listen(PORT, () => {
     console.log(`Express szerver fut: http://localhost:${PORT}`);
     console.log(`Példa: Magyar városok (rendezve): http://localhost:${PORT}/cities?countryId=HU`);

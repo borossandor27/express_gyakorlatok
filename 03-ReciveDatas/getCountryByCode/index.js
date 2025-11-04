@@ -42,31 +42,8 @@ app.get('/country/:code', async (req, res) => {
 });
 
 
-app.get('/cities/:countryCode', async (req, res) => {
-  const countryCode = req.params.countryCode.toUpperCase();
-
-  try {
-    const response = await axios.get(`https://wft-geo-db.p.rapidapi.com/v1/geo/countries/${countryCode}/cities`, {
-      headers: {
-        'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
-        'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
-      },
-      params: {
-        limit: 10, // csak 10 várost kérünk például
-        offset: 0
-      }
-    });
-
-    res.json(response.data);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).json({ error: 'Nem sikerült lekérni a városokat.' });
-  }
-});
-
-
 app.use((req, res) => {
-    
+
   res.status(404).send('Az oldal használata: /country/{országkód} (pl. http://localhost:3000/country/hu)');
 });
 
