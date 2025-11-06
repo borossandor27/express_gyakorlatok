@@ -14,8 +14,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Statikus fájlok kiszolgálása
-app.use(express.static('public'));
+// Statikus fájlok kiszolgálása alapértelmezett könyvtárból
+app.use(express.static('public')); // 'public' könyvtár a gyökérkönyvtárhoz képest
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
