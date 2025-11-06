@@ -6,3 +6,9 @@ Elég nagy eltérés van CommonJs és a moduláris sztatikus fájlok kezeléséb
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 ```
+
+## `fileURLToPath(import.meta.url)`
+
+Azért van rá szükségünk, mert eltávolítja a `file://` prefixet ezzel platformfüggetlen útvonallá konvertálja
+
+Az `import.meta.url` lekéri a jelenlegi fájl URL-jét
