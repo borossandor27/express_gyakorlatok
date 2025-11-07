@@ -59,7 +59,13 @@ A `function() {}` helyett az ES6 vagy ECMAScript 2015-ben bevezették a `() => {
 
 #### Implicit visszatérés
 
-A nyílfüggvények implicit visszaadást tesznek lehetővé: az értékek `return` kulcsszó használata nélkül kerülnek visszaadásra.
+A nyílfüggvényekben bizonyos esetekben elhagyható a `return` kulcsszó.
+
+- **Constructor függvényekben** ha nincs explicit return, automatikusan visszaadja az újonnan létrehozott objektumot
+- **Async függvények** mindig Promise-ot adnak vissza
+- **Callback függvényekben** gyakran nem szükséges return, mert a műveleti sor folytatódik
+
+A `return` elhagyása tehát mindig `undefined`-ot eredményez, kivéve a fent említett speciális esetekben.
 
 #### 'this' működése
 
