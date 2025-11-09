@@ -258,10 +258,10 @@ modul.js:
 
   ```javascript
   export function fuggvenyEgy() {
-  console.log('Ez az első függvény');
+    console.log('Ez az első függvény');
   }
   export function fuggvenyKetto() {
-  console.log('Ez a második függvény');
+    console.log('Ez a második függvény');
   }
   export const konstansErtek = 42;
   ```
@@ -281,10 +281,10 @@ modul.js:
 
   ```javascript
   export default function alapertelmezettFuggveny() {
-  console.log('Ez az alapértelmezett függvény');
+    console.log('Ez az alapértelmezett függvény');
   }
   export function masikFuggveny() {
-  console.log('Ez egy másik függvény');
+    console.log('Ez egy másik függvény');
   }
   ```
 
@@ -302,10 +302,10 @@ modul.js:
 
   ```javascript
   export function fuggvenyEgy() {
-  console.log('Ez az első függvény');
+    console.log('Ez az első függvény');
   }
   export function fuggvenyKetto() {
-  console.log('Ez a második függvény');
+    console.log('Ez a második függvény');
   }
   export const konstansErtek = 42;
   ```
@@ -384,9 +384,9 @@ Kezdd egy új Node.js projekt létrehozásával, majd telepítsd az Express-t:
 npm install express
 ```
 
-### Első szerver létrehozása
+### [Első szerver létrehozása](./01-HelloWorld/)
 
-Készíts egy alapvető Express szervert, ami egy egyszerű "Hello World" üzenetet ad vissza.
+Egy egyszerű "Hello World" üzenetet ad vissza.
 
   ```javascript
   import express from 'express';
@@ -394,30 +394,34 @@ Készíts egy alapvető Express szervert, ami egy egyszerű "Hello World" üzene
   const port = 3000;
 
   app.get('/', (req, res) => {
-  res.send('Hello World!');
+    res.send('Hello World!');
   });
 
   app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Example app listening at http://localhost:${port}`);
   });
   ```
 
-### URL paraméterek és lekérdezési paraméterek kezelése
+### [Adatok fogadása a klienstől](./03-ReciveDatas/)
 
 Az Express-ben a klienstől érkező adatok fogadásának fontosabb lehetőségei a következők:
 
-#### Lekérdezési paraméterek *(req.query)*
+#### 1. Lekérdezési paraméterek *(req.query)*
+
+Lekérdezési paraméternek nevezzük azokat az adatokat, amelyeket a kliens *(pl. böngésző)* az URL-ben küld el a szervernek, általában a `?` karakter után. Ezeket a paramétereket az Express a req.query objektumban teszi elérhetővé. **Típusuk mindig string**. Az URL-ben több `key=value` páros is lehet, `&` jellel elválasztva. Ha egy paraméter nincs megadva, akkor az `undefined` lesz. Lekérdezési paramétert általában a viselkedés vagy válasz testreszabására *(pl. részletes nézet, szűrés, lapozás)* használjuk. Nincs titkosítási lehetősége!
+
+A lekérdezési paraméterek méretére nincs kifejezetten az Express által meghatározott korlát, mivel ezek az URL részei, így a korlátot inkább a böngészők és a webkiszolgálók szabják meg. (~2000-8000 karakter)
 
   ```javascript
   // GET /search?name=John&age=30
   app.get('/search', (req, res) => {
-  const name = req.query.name; // "John"
-  const age = req.query.age; // "30"
-  res.send(`Name: ${name}, Age: ${age}`);
+    const name = req.query.name; // "John"
+    const age = req.query.age; // "30"
+    res.send(`Name: ${name}, Age: ${age}`);
   });
   ```
 
-##### Használhatsz speciális karaktereket, amik hasonlóan működnek, mint a regex
+##### Használhatóak speciális karakterek, amik hasonlóan működnek, mint a reguláris kifejezésekben
 
   | Jelölés | Jelentés                                          |
   | ------- | ------------------------------------------------- |
@@ -439,35 +443,39 @@ Az Express-ben a klienstől érkező adatok fogadásának fontosabb lehetősége
   | `/a(bc)?d`                    | `a` + opcionális `bc` + `d`             | `/ad`, `/abcd`       |
   | `/:countrycode([A-Za-z]{3})`  | `{3}` pontosan három betűt engedélyez   | `/country/HUN`       |
   
-#### Útvonal paraméterek *(req.params)*
+#### 2. Útvonal paraméterek *(req.params)*
+
+Az útvonal paraméter *(route parameter)* az Express-ben olyan adat, amelyet az URL útvonalának részeként adunk meg, nem pedig lekérdezésként (?key=value). Ezeket az Express a `req.params` objektumban tárolja. Útvonal paramétert leginkább akkor használunk, ha az adat része az erőforrás azonosításának *(pl. felhasználó ID, termék kód)*.
 
   ```javascript
   // GET /users/123
   app.get('/users/:id', (req, res) => {
-  const userId = req.params.id; // "123"
-  res.send(`User ID: ${userId}`);
+    const userId = req.params.id; // "123"
+    res.send(`User ID: ${userId}`);
   });
   ```
 
-#### Törzs (body) paraméterek *(req.body)* – JSON és URL-kódolt adatok
+#### 3. Törzs (body) paraméterek *(req.body)* – JSON és URL-kódolt adatok
 
-HTML:
+A kérés törzsében *(request body)* is lehet adatokat eljuttatni a szerverhez, különösen POST, PUT, vagy PATCH típusú HTTP kéréseknél. Ez a módszer akkor hasznos, ha nagyobb mennyiségű vagy strukturált adatot szeretnénk küldeni, például JSON formátumban.
+
+A kliens oldalon kell megadni a lehetőséget az adatok küldésére:
 
   ```html
   <form method="POST" action="/users">
-  <input type="text" name="name">
-  <input type="number" name="age">
-  <button type="submit">Submit</button>
+    <input type="text" name="name">
+    <input type="number" name="age">
+    <button type="submit">Submit</button>
   </form>
   ```
 
-JS:
+A szerveren a `req.body` objektum fogja tartalmazni az űrlap adatait, amelyeket `name` HTML jellemző segítségével tudunk azonosítani.
 
   ```javascript
   app.use(express.urlencoded({ extended: true })); // Middleware az URL-kódolt adatok kezeléséhez
   app.post('/users', (req, res) => {
-  const { name, age } = req.body;
-  res.send(`Received user: ${name}, Age: ${age}`);
+    const { name, age } = req.body;
+    res.send(`Received user: ${name}, Age: ${age}`);
   });
   ```
 
@@ -477,8 +485,8 @@ HTML:
 
   ```html
   <form action="/upload" method="POST" enctype="multipart/form-data">
-  <input type="file" name="myfile">
-  <button type="submit">Upload</button>
+    <input type="file" name="myfile">
+    <button type="submit">Upload</button>
   </form>
   ```
 
@@ -488,7 +496,7 @@ JS:
   const multer = require('multer');
   const upload = multer({ dest: 'uploads/' }); // Mappába menti a fájlokat
   app.post('/upload', upload.single('myfile'), (req, res) => {
-  res.send(`File uploaded: ${req.file.originalname}`);
+    res.send(`File uploaded: ${req.file.originalname}`);
   });
   ```
 
@@ -517,30 +525,9 @@ JS:
 1. Hozz létre egy útvonalat, amely egy URL paraméter alapján fogad be egy adatot, például: `/users/:id`, és visszaadja az adott felhasználót.
 1. Készíts egy olyan útvonalat, amely lekérdezési paramétereket (query parameters) kezel, például: `/search?name=John`.
 
-## Statikus fájlok kiszolgálása
+## [Statikus fájlok kiszolgálása](./04-StaticFiles/)
 
 Hogyan szolgálhatók ki statikus fájlok (HTML, CSS, képek stb.) Express alkalmazásból.
-
-  ```javascript
-  const express = require('express');
-  const app = express();
-  const port = 3000;
-  const cors = require('cors');
-  app.use(cors({origin: 'http://localhost:3000'}));
-  const fs = require('fs');
-  const path = require('path');
-  app.use(express.static(path.join(__dirname, 'public')));
-
-  app.get('/', (req, res) => {
-  res.header('Content-Type', 'text/html; charset=utf-8');
-  res.status(201).sendFile(__dirname + '/public/index.html');
-  });
-
-  app.get('/login', (req, res) => {
-  res.header('Content-Type', 'text/html; charset=utf-8');
-  res.status(201).sendFile(__dirname + '/public/login.html');
-  });
-  ```
 
 ### Gyakorlat
 
@@ -550,13 +537,9 @@ Készíts egy alap weboldalt, amelynek a HTML fájljait, CSS stílusait és kép
 
 Express remekül alkalmas RESTful API-k készítésére. Tanuld meg, hogyan kezelheted a különböző HTTP metódusokat (GET, POST, PUT, DELETE), és hogyan strukturálhatod API-jaidat.
 
-### Gyakorlat
+## [Middleware használata](./02-Middleware/)
 
-Adatkezelés és JSON válaszok: Készíts egy REST API-t, amely JSON adatokat szolgáltat. Hozz létre egy egyszerű CRUD (Create, Read, Update, Delete) alkalmazást, amely pl. felhasználók adatait kezeli.
-
-## Middleware használata
-
-Az Express middleware-ek az Express alkalmazás szíve-lelke. Ezek olyan funkciók (függvények), amelyek hozzáférést biztosítanak a bejövő kérésekhez, és módosíthatják azokat, illetve válaszokat generálhatnak vagy átadhatják a vezérlést a következő middleware-nek a láncban. A middleware-ek alapvető szerepet játszanak az alkalmazás logikájának kezelésében és szervezésében.
+Az Express middleware-ek az Express alkalmazás alapját jelentik. Ezek olyan funkciók (függvények), amelyek hozzáférést biztosítanak a bejövő kérésekhez, és módosíthatják azokat, illetve válaszokat generálhatnak vagy átadhatják a vezérlést a következő middleware-nek a láncban. A middleware-ek alapvető szerepet játszanak az alkalmazás logikájának kezelésében és szervezésében.
 
 Amikor egy HTTP kérést kap a szerver, az Express végigfut a middleware láncon, és minden egyes middleware megkapja a következő három dolgot:
 
@@ -592,7 +575,7 @@ A middleware-ek rugalmas módon szervezik az alkalmazás működését, lehetős
 
   ```javascript
   app.use((req, res, next) => {
-  console.log('Alkalmazás szintű middleware.');
+    console.log('Alkalmazás szintű middleware.');
   next();
   });
   ```
@@ -601,14 +584,16 @@ A middleware-ek rugalmas módon szervezik az alkalmazás működését, lehetős
 
   ```javascript
   app.get('/user/:id', (req, res, next) => {
-  console.log('Csak a /user/:id útvonalra fut le');
-  next();
+    console.log('Csak a /user/:id útvonalra fut le');
+    next();
   }, (req, res) => {
-  res.send('Felhasználói információk');
+    res.send('Felhasználói információk');
   });
   ```
 
 - **Harmadik fél által készített middleware-ek**: Express middleware-eket harmadik felek is készítenek, amelyek megkönnyítik például a hitelesítést, a fájlfeltöltést, a naplózást stb. Ezeket NPM csomagokon keresztül telepítheted és használhatod.
+
+A Morgan egy népszerű middleware az Express alkalmazásokban, amelyet HTTP kérések naplózására használnak. Segítségével könnyen nyomon követheted, hogy milyen kérések érkeznek a szerverhez, mikor, milyen státuszkóddal válaszol, és mennyi idő alatt.
 
   ```javascript
   const morgan = require('morgan');
