@@ -593,19 +593,20 @@ A middleware-ek rugalmas módon szervezik az alkalmazás működését, lehetős
 
 - **Harmadik fél által készített middleware-ek**: Express middleware-eket harmadik felek is készítenek, amelyek megkönnyítik például a hitelesítést, a fájlfeltöltést, a naplózást stb. Ezeket NPM csomagokon keresztül telepítheted és használhatod.
 
-A Morgan egy népszerű middleware az Express alkalmazásokban, amelyet HTTP kérések naplózására használnak. Segítségével könnyen nyomon követheted, hogy milyen kérések érkeznek a szerverhez, mikor, milyen státuszkóddal válaszol, és mennyi idő alatt.
+A [Morgan](https://www.npmjs.com/package/morgan) egy népszerű middleware az Express alkalmazásokban, amelyet HTTP kérések naplózására használnak. Segítségével könnyen nyomon követheted, hogy milyen kérések érkeznek a szerverhez, mikor, milyen státuszkóddal válaszol, és mennyi idő alatt.
 
   ```javascript
-  const morgan = require('morgan');
+  import morgan from 'morgan';
+  const app = express();
   app.use(morgan('combined')); // Naplózza a kéréseket
   ```
 
-- **Hiba middleware**: Ez egy speciális típusú middleware, amelyet a hibák kezelésére használnak. Egy hiba middleware-t négy paraméterrel definiálnak: `err`, `req`, `res` és `next`. Ezek csak akkor hívódnak meg, ha valami hiba történik az alkalmazásban.
+- **Hibakezelő middleware**: Ez egy speciális típusú middleware, amelyet a hibák kezelésére használnak. Egy hiba middleware-t négy paraméterrel definiálnak: `err`, `req`, `res` és `next`. Ezek csak akkor hívódnak meg, ha valami hiba történik az alkalmazásban.
 
   ```javascript
   app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Valami elromlott!');
+    console.error(err.stack);
+    res.status(500).send('Valami elromlott!');
   });
   ```
 
