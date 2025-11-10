@@ -65,7 +65,7 @@ A Sequelize nem támogatja az adatbázis létrehozást, ezt nekünk kell megolda
 
 ## Teljes alkalmazás elkészítése
 
-    ```plaintext
+    ```text
     project/
     ├── models/
     │   ├── index.js
