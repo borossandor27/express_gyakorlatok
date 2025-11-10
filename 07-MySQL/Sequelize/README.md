@@ -83,5 +83,3 @@ A Sequelize nem támogatja az adatbázis létrehozást, ezt nekünk kell megolda
     ├── app.js
     ├── package.json
     ```
-
-
