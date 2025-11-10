@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 
 export default (sequelize) => {
-  const Role = sequelize.define('Role', {
+  return sequelize.define('Role', {
     role_name: {
       type: DataTypes.STRING(50),
       allowNull: false
@@ -10,6 +10,4 @@ export default (sequelize) => {
     tableName: 'roles',
     timestamps: false
   });
-
-  return Role;
 };

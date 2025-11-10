@@ -1,7 +1,7 @@
-
 import models from '../models/index.js';
 
 export const getAllUsers = async (req, res) => {
+  console.log("Fetching all users with their roles");
   const users = await models.User.findAll({ include: models.Role });
   res.json(users);
 };

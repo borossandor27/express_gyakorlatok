@@ -1,7 +1,8 @@
+
 import { DataTypes } from 'sequelize';
 
 export default (sequelize) => {
-  const User = sequelize.define('User', {
+  return sequelize.define('User', {
     name: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
@@ -22,6 +23,4 @@ export default (sequelize) => {
     tableName: 'users',
     timestamps: false
   });
-
-  return User;
 };

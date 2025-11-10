@@ -2,11 +2,20 @@ import { Sequelize } from 'sequelize';
 import UserModel from './user.js';
 import RoleModel from './role.js';
 import LoginModel from './login.js';
+import config from '../config/config.json' with { type: 'json' }; // használja ugyanazt a config fájlt, amit a sequelize-cli és migrációk is
 
-const sequelize = new Sequelize('userdb', 'root', 'jelszó', {
-  host: 'localhost',
-  dialect: 'mysql'
-});
+const env = process.env.NODE_ENV || 'development';
+const dbConfig = config[env];
+
+const sequelize = new Sequelize(
+  dbConfig.database,
+  dbConfig.username,
+  dbConfig.password,
+  {
+    host: dbConfig.host,
+    dialect: dbConfig.dialect
+  }
+);
 
 const models = {
   User: UserModel(sequelize),

@@ -2,7 +2,7 @@
 
 ## Csomagok telepítése
 
-    ```shell
+    ```bash
     npm init -y
     npm install sequelize mysql2
     npm install --save-dev sequelize-cli
@@ -10,7 +10,7 @@
 
 ## Sequlize projekt inicializálása
 
-    ```shell
+    ```bash
     npx sequelize-cli init
     ```
 Ez létrehozza a config, models, migrations és seeders mappákat
@@ -45,7 +45,7 @@ Ez létrehozza a config, models, migrations és seeders mappákat
 
 ## Modellek létrehozása
 
-    ```shell
+    ```bash
     npx sequelize-cli model:generate --name Role --attributes role_name:string
     npx sequelize-cli model:generate --name User --attributes name:string,email:string,password:string,role_id:integer,active:boolean
     npx sequelize-cli model:generate --name Login --attributes user_id:integer,login_time:date,success:boolean
@@ -59,7 +59,7 @@ A fenti parancsok a `migrations` mappában elhelyezik a létrehozáshoz használ
 
 A Sequelize nem támogatja az adatbázis létrehozást, ezt nekünk kell megoldani. Pédánkban ezért az adatbázis kezelőben létre kell hoznunk a `userdb` adatbázist a migrácó futtatása előtt
 
-    ```shell
+    ```bash
     npx sequelize-cli db:migrate
     ```
 

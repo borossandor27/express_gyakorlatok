@@ -1,7 +1,7 @@
 import { DataTypes } from 'sequelize';
 
 export default (sequelize) => {
-  const Login = sequelize.define('Login', {
+  return sequelize.define('Login', {
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -18,6 +18,4 @@ export default (sequelize) => {
     tableName: 'logins',
     timestamps: false
   });
-
-  return Login;
 };
