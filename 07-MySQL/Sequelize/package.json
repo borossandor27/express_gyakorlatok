@@ -1,0 +1,26 @@
+{
+  "name": "sequelize",
+  "version": "1.0.0",
+  "description": "A Sequelize használata MySQL adatbázissal Node.js környezetben Express keretrendszerrel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Sequelize",
+    "MySQL",
+    "Express",
+    "database"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mysql2": "^3.15.3",
+    "sequelize": "^6.37.7"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.3"
+  }
+}

@@ -329,7 +329,7 @@ A Modul Feloldási Algoritmus *(Module Resolution Algorithm)* az a folyamat, ame
     b) Fájlként kiterjesztéssel: `X.js`, `X.json`, `X.node` *(vagy a modul típusához tartozó kiterjesztéssel, pl. .mjs)*
     c) Könyvtárként: Megpróbálja betölteni az `X/package.json` fájlt *(és ott a `main` mező által megadott fájlt)*, vagy az `X/index.js` fájlt.
   1. **`node_modules`**: Ha X nem abszolút vagy relatív útvonal *(azaz egy modulnév, pl. axios)*, akkor a Node.js elkezdi keresni azt a `node_modules` könyvtárban.
-  __NOTE__ A keresés a jelenlegi könyvtárból indul, és felfelé halad a szülőkönyvtárak felé, minden szinten megkeresve a `node_modules/X` mappát, amíg el nem éri a gyökérkönyvtárat.
+  **NOTE** A keresés a jelenlegi könyvtárból indul, és felfelé halad a szülőkönyvtárak felé, minden szinten megkeresve a `node_modules/X` mappát, amíg el nem éri a gyökérkönyvtárat.
 
 ## Promise használata
 
@@ -672,7 +672,7 @@ Az express nem közvetlenül kapcsolódik az adatbázisokhoz, de a middleware-k 
 
 ### MySQL adatbázis közvetlen elérésére middleware segítségével
 
-Az `express` keretrendszerben a **MySQL** adatbázis elérésére a `mysql`, `mysql2` és `mysql2/promise` middleware-k használhatók. 
+Az `express` keretrendszerben a **MySQL** adatbázis elérésére a `mysql`, `mysql2` és `mysql2/promise` middleware-k használhatók.
 
 A `mysql2` a `mysql` könyvtár modern alternatívája, amely számos további funkciót kínál, és jobb teljesítményt nyújt. A `mysql2` támogatja a Promise-okat és az async/await szintaxist is.
 
@@ -748,7 +748,7 @@ Az ORM *(Object-Relational Mapping)* eszközök nagyban leegyszerűsítik az ada
 
 ### [Sequelize](https://sequelize.org/)
 
-A Sequelize egy teljes értékű, Promise-alapú ORM, amely támogatja a PostgreSQL, MySQL, MariaDB, SQLite és SQL Server adatbázisokat. 
+A Sequelize egy teljes értékű, Promise-alapú ORM, amely támogatja a PostgreSQL, MySQL, MariaDB, SQLite és SQL Server adatbázisokat.
 
 ```javascript
 const { Sequelize, DataTypes } = require('sequelize');
@@ -844,29 +844,37 @@ A CORS (Cross-Origin Resource Sharing) egy olyan biztonsági mechanizmus, amelye
 ### Alapfogalmak
 
 #### Mi az az "origin"?
+
 Egy weboldal origin-je az alábbi három részből áll:
+
 - Domain (például: example.com)
 - Protokoll (például: http:// vagy https://)
 - Port (alapértelmezés szerint a 80-as port az HTTP-nél, és a 443-as port az HTTPS-nél)
 
-Például a https://example.com:3000 URL originje:
+Például a <https://example.com:3000> URL originje:
+
 - Protokoll: https
 - Domain: example.com
 - Port: 3000
 
 #### Mi az a "cross-origin"?
-Egy "cross-origin" kérésről akkor beszélünk, ha egy weboldal egy másik originről (domain-ről, portból vagy protokollból) próbál betölteni adatokat. Például, ha a http://example.com weboldalról egy API-kérést küldünk a http://api.example.com címre, az már egy "cross-origin" kérés.
+
+Egy "cross-origin" kérésről akkor beszélünk, ha egy weboldal egy másik originről (domain-ről, portból vagy protokollból) próbál betölteni adatokat. Például, ha a <http://example.com> weboldalról egy API-kérést küldünk a <http://api.example.com> címre, az már egy "cross-origin" kérés.
 
 ### CORS szükségessége
+
 A böngészők alapvetően korlátozzák a "cross-origin" kéréseket, hogy megakadályozzák a Cross-Site Scripting (XSS) vagy Cross-Site Request Forgery (CSRF) típusú támadásokat. A CORS mechanizmus lehetővé teszi a szerverek számára, hogy megadják, melyik originről érkezhetnek biztonságosan kérések.
 
-Mivel a fejlesztés során a szerver (http://localhost:3000) és kliens (localhost:80 vagy localhost:5500) ugyanazon a gépen futnak, de különböző portokon, ezért a CORS problémája felmerülhet. Itt a "cross-origin" helyzet abból adódik, hogy a port számok eltérnek (3000 vagy 80 vagy 5500). A böngésző ilyenkor védi az adatokat azáltal, hogy megköveteli, hogy a szerver kifejezetten engedélyezze ezeket a kéréseket.
+Mivel a fejlesztés során a szerver (<http://localhost:3000>) és kliens (localhost:80 vagy localhost:5500) ugyanazon a gépen futnak, de különböző portokon, ezért a CORS problémája felmerülhet. Itt a "cross-origin" helyzet abból adódik, hogy a port számok eltérnek (3000 vagy 80 vagy 5500). A böngésző ilyenkor védi az adatokat azáltal, hogy megköveteli, hogy a szerver kifejezetten engedélyezze ezeket a kéréseket.
 
 ### Hogyan működik a CORS?
+
 Amikor egy böngésző egy cross-origin kérést próbál küldeni, a CORS mechanizmus a következő lépéseket hajtja végre:
 
 #### Egyszerű kérés (Simple Request)
+
 Egy kérés "egyszerű" (simple), ha az alábbi kritériumok mindegyike teljesül:
+
 - HTTP-módszerek közül csak a GET, POST vagy HEAD van használatban.
 - A kérésben csak alapvető HTTP-fejlécek vannak, mint például:
   - Accept
@@ -874,12 +882,15 @@ Egy kérés "egyszerű" (simple), ha az alábbi kritériumok mindegyike teljesü
   - DPR, Width, Viewport-Width
 
 Egy ilyen egyszerű kérés esetén a böngésző egyszerűen elküldi a kérést, és ha a szerver CORS fejlécekkel válaszol, akkor a böngésző ellenőrzi, hogy a válasz engedélyezett-e. A szerver válaszában a következő fejléc szerepelhet, ami azt mondja a böngészőnek, hogy engedélyezett a kérés:
+
 ```http
 Access-Control-Allow-Origin: https://example.com
 ```
 
 #### Előzetes ellenőrzés (Preflight Requests)
+
 Ha a kérés nem "egyszerű", a böngésző egy előzetes ellenőrzést (preflight) hajt végre egy OPTIONS kérés küldésével, mielőtt a tényleges kérést elküldené. Ez az ellenőrzés megkérdezi a szervert, hogy az engedélyezi-e az adott típusú kérést. Az előzetes ellenőrzés kérdésre a szerver válasza tartalmazza a következő fejléceket:
+
 - Access-Control-Allow-Methods: Mely HTTP-módszereket engedélyezi a szerver (pl.: GET, POST, PUT stb.).
 - Access-Control-Allow-Headers: Mely egyéni HTTP-fejléceket engedélyezi a szerver (pl.: Content-Type, Authorization).
 - Access-Control-Allow-Origin: Az origin, ahonnan a kérés érkezhet (vagy * minden origin engedélyezésére).
@@ -887,6 +898,7 @@ Ha a kérés nem "egyszerű", a böngésző egy előzetes ellenőrzést (preflig
 Ha a szerver válasza megfelelő, a böngésző végrehajtja a tényleges kérést. Ha nem, a kérés elutasításra kerül.
 
 Példa egy preflight kérésre:
+
 ```http
 OPTIONS /some/resource HTTP/1.1
 Host: api.example.com
@@ -896,6 +908,7 @@ Access-Control-Request-Headers: Content-Type, apikey
 ```
 
 És a szerver válasza:
+
 ```http
 HTTP/1.1 200 OK
 Access-Control-Allow-Origin: http://localhost:3000
@@ -976,7 +989,7 @@ Az npm-el nagyon sok már sokak által használt ellenőrző könyvtárat vehet�
 - Superstruct
 - Vesta
 
-Mi a Yup-nak a használatával fogunk ismerkedni. (https://www.npmjs.com/package/express-yup-middleware és https://github.com/wgrisa/express-yup-middleware)
+Mi a Yup-nak a használatával fogunk ismerkedni. (<https://www.npmjs.com/package/express-yup-middleware> és <https://github.com/wgrisa/express-yup-middleware>)
 
 A rugalmasság, áttekinthetőség, könnyű javítás miatt célszerű az egyedekhez tartozó sémákat létrehozni és ezeket saját készítésű és „gyári” middleware-ek segítségével ellenőriztetni.
 
