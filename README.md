@@ -699,7 +699,7 @@ A `mysql2` a `mysql` könyvtár modern alternatívája, amely számos további f
 - Manuálisan kell kezelni a kapcsolatot (*pl. lezárni a használat után*).
 
 ```javascript
-const mysql = require('mysql2/promise');
+import mysql from 'mysql2/promise';
 
 async function main() {
   // Kapcsolatkészlet létrehozása
@@ -733,6 +733,8 @@ async function main() {
 
 main();
 ```
+
+#### [Teljes példa a használatra itt](./07-MySQL/express-mysql-module/)
 
 ### ORM *(Object-Relational Mapping)* használata
 
