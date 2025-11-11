@@ -12,3 +12,22 @@ const __dirname = path.dirname(__filename);
 Azért van rá szükségünk, mert eltávolítja a `file://` prefixet ezzel platformfüggetlen útvonallá konvertálja
 
 Az `import.meta.url` lekéri a jelenlegi fájl URL-jét
+
+## Példa statikus html köldésre
+
+```js
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Statikus fájlok kiszolgálása
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.listen(3000, () => {
+console.log('Server running on port 3000');
+});
+```

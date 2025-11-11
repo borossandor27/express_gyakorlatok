@@ -103,7 +103,7 @@ akkor egy hagyományos funkcióra van szükség:
 
 ### Spread operátor `...`
 
-Az iterálható objektumokat (pl. listák, tömbök, sztringek) kibontja (objektum destrukturálás). Hasonló funkciókat tartalmaznak a Ruby, Python és PHP nyelvek is.
+Az iterálható objektumokat *(pl. listák, tömbök, sztringek)* **kibontja** *(objektum destrukturálás)*. 
 
 ```javascript
 const arr1 = [1, 2, 3];

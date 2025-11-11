@@ -1,0 +1,46 @@
+body {
+    margin: 50px;
+    text-align: justify;
+    font-family: Arial, sans-serif;
+    font-size: 1.5vw;
+}
+
+img {
+    width: 70%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+div {
+    text-align: center;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: lightgreen;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a:hover {
+    color: white;
+    background-color: darkgreen;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: inline;
+    margin: 0 15px;
+    font-size: 1.2vw;
+    text-transform: uppercase;
+}

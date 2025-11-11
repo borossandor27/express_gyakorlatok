@@ -1,0 +1,24 @@
+{
+  "name": "evszakok",
+  "version": "1.0.0",
+  "description": "Elég nagy eltérés van CommonJs és a moduláris sztatikus fájlok kezelésében. A hagyományos esetében automatikus létrejönnek a `__filename` és `__dirname` globális változókat, amelyek az éppen futó fájl adatait tartalmazzák. A moduláris esetén ezeket nekünk kell ezeket manuálisan létrehoznunk.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "express",
+    "static",
+    "files"
+  ],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "mobil",
+  "version": "1.0.0",
+  "description": "A mobil eszközök sávszélessége jellemzően alacsonyabb az asztali alkalmazásokhoz képest, ezért letölthető fájlokat célszerű optimalizálni.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "compression": "^1.8.1",
+    "express": "^5.1.0",
+    "express-useragent": "^2.0.2",
+    "helmet": "^8.1.0",
+    "path": "^0.12.7",
+    "url": "^0.11.4"
+  }
+}
