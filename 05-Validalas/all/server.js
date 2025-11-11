@@ -5,45 +5,32 @@
     Ha megfelelőek, akkor a felhasználó adatait egy tömbben tároljuk.
     A tárolt felhasználónév és jelszó párossal be is jelentkezhet a felhasználó.
 */
-const express = require("express");
-const app = express();
+import express from "express";
+import path from "path"; //-- mappák kezeléséhez szükséges modul importálása
+import fs from "fs";
+import multer from 'multer'; //-- Multer dokumentációja: https://expressjs.com/en/resources/middleware/multer.html
+import { fileURLToPath } from 'url';
+import cors from "cors"; //-- böngésző CORS blokkolás feloldása
 
-const path = require("path"); //-- mappák kezeléséhez szükséges modul importálása
-//-- Multer dokumentációja: https://expressjs.com/en/resources/middleware/multer.html
-const multer = require('multer'); //-- a feltöltött fájlok kezeléséhez szükséges modul importálása
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const app = express();
 
 //-- Multer konfigurálása: fájlok mentése egy 'uploads' mappába
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'uploads/'); //-- a feltöltött fájlok mentési helye
-    },
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + path.extname(file.originalname)); // Új fájlnév hozzáadása időbélyeggel
-    }
-  });
-  
-const upload = multer({ storage: storage });
-const fs = require("fs"); //-- fájlrendszer modul importálása  
-const cors = require("cors"); //-- böngésző CORS blokkolás feloldása
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5500",
-      "http://localhost:3000",
-      "http://localhost:80",
-    ],
-  })
-);
-
-//-- CORS kikapcsolása a böngészőben
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/'); //-- fájlok mentése az 'uploads' mappába  
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname)); // Új fájlnév hozzáadása időbélyeggel
+  }
 });
-const port = 3000; //-- port szám beállítása
-const bodyParser = require("body-parser"); //-- body-parser modul importálása
-app.use(bodyParser.urlencoded({ extended: true })); //-- a kapott enctype="multipart/form-data" űrlap adatainak a feldolgozása
-app.use(bodyParser.json()); //-- a kapott json törzs (body) feldolgozása
+
+const upload = multer({ storage: storage });
+app.use(cors());
+app.use(express.urlencoded({ extended: true })); //-- a kapott enctype="multipart/form-data" űrlap adatainak a feldolgozása
+app.use(express.json()); //-- a kapott json törzs (body) feldolgozása
 app.use(express.static("public")); //-- statikus fájlok elérési útvonalának beállítása
 
 let users = []; //-- felhasználók tömbjének deklarálása
@@ -62,19 +49,23 @@ app.get("/", (req, res) => {
     res.send("Nincs ilyen fájl!");
   }
 });
+
 app.get("/users", (req, res) => {
   userContent = JSON.stringify(users);
   res.status(201).send(userContent);
 });
+
 app.get("/reg", (req, res) => {
   res.status(201).sendFile(path.join(__dirname, "public", "regisztracio.html"));
 });
+
 app.get("/login", (req, res) => {
   res
     .status(201)
     .sendFile(path.join(__dirname, "public", "bejelentkezes.html"));
 });
-app.post("/reg",upload.single('profilePic'), (req, res) => {
+
+app.post("/reg", upload.single('profilePic'), (req, res) => {
   console.log(req.body);
   console.log(req.file);
   let name = req.body.name;
@@ -151,6 +142,7 @@ app.post("/reg",upload.single('profilePic'), (req, res) => {
     });
   }
 });
+
 app.post("/login", (req, res) => {
   console.log(req.body);
   let email = req.body.email;
@@ -168,6 +160,6 @@ app.post("/login", (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Az alkalmazás elindult a http://localhost:${port} címen.`);
+app.listen(3000, () => {
+  console.log(`Az alkalmazás elindult a http://localhost:3000 címen.`);
 });

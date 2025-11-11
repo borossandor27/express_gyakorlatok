@@ -6,7 +6,18 @@ body {
     margin: 0;
     padding: 0;
 }
-
+main {
+    width: 80%;
+    margin: 2em auto;
+    padding: 1em;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+h1 {
+    color: navy;
+    text-align: center;
+}
 label {
     color: navy;
     width: 200px;
@@ -34,6 +45,23 @@ button a {
     text-decoration: none;
 }
 
+input {
+    padding: 8px;
+    margin: 5px 0 15px 0;
+    border: 2px solid gray;
+    border-radius: 4px;
+    width: 300px;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+input:valid {
+    border: 2px solid green;
+    background-color: #f0fff0;
+}
+input:invalid {
+    border: 2px solid red;
+    background-color: #fff0f0;
+}
 button:hover {
     background-color: red;
 }
