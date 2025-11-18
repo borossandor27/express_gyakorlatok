@@ -1,3 +1,5 @@
+# mappa szerkezet
+
 ```bash
 /projekt-mappa
 │── /routes
@@ -9,3 +11,5 @@
 │── server.js
 │── package.json
 ```
+
+A `server.js`-ben az útvonal alapján továbbíthatjuk a megfelelő modulnak a kérést

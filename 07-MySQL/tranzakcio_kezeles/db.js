@@ -5,7 +5,7 @@ const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost',
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'tranzakcio_kezeles',
+  database: process.env.DB_NAME || 'tranzakcios_pelda',
 });
 
 export async function atutalas(pool, forrasId, celId, osszeg) {
