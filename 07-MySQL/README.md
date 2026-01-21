@@ -58,5 +58,34 @@ const hash = await bcrypt.hash('myPassword123', 11);
 // Ellenőrzés (működik C#-ban készített hash-sel is!)
 const isValid = await bcrypt.compare('myPassword123', hash);
 ```
-
 NPM csomag: `bcrypt`
+
+### Argon2 példák
+
+C# (Argon2)
+```csharp
+using Isopoh.Cryptography.Argon2;
+
+// Hash készítése
+string hash = Argon2.Hash("myPassword123");
+// Eredmény pl: "$argon2id$v=19$m=65536,t=3,p=1$..."
+
+// Ellenőrzés
+bool isValid = Argon2.Verify(hash, "myPassword123");
+```
+
+NuGet csomag: `Isopoh.Cryptography.Argon2`
+
+### Node.js (Argon2)
+```javascript
+const argon2 = require('argon2');
+
+// Hash készítése
+const hash = await argon2.hash('myPassword123');
+// Eredmény pl: "$argon2id$v=19$m=65536,t=3,p=1$..."
+
+// Ellenőrzés (működik C#-ban készített hash-sel is!)
+const isValid = await argon2.verify(hash, 'myPassword123');
+```
+
+NPM csomag: `argon2`
