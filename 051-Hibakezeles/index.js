@@ -5,14 +5,14 @@ const app = express();
 app.use(express.json());
 
 /* --------------------------------------------------
- 1️⃣ KÉZZEL DOBOTT HIBA
+ KÉZZEL DOBOTT HIBA
 -------------------------------------------------- */
 app.get('/throw', (req, res) => {
     throw new Error('Kézzel dobott hiba történt!');
 });
 
 /* --------------------------------------------------
- 2️⃣ next(err) HÍVÁSSAL ÁTADOTT HIBA
+ next(err) HÍVÁSSAL ÁTADOTT HIBA
 -------------------------------------------------- */
 app.get('/next', (req, res, next) => {
     const authorized = false;
