@@ -1,3 +1,5 @@
+# JWT alapú felhasználó hitelesítés Node.js backendben
+
 ## Megoldandó feladatok
 1. Felhasználó regisztráció
 2. Bejelentkezés (jelszó ellenőrzés + token generálás)

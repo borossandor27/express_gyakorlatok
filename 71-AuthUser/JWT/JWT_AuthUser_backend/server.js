@@ -52,7 +52,7 @@ app.post("/register", async (req, res) => {
 app.post("/login", async (req, res) => {
     try {
         const { username, password } = req.body;
-console.log(username, password);
+        console.log(username, password);
         const [rows] = await db.execute("SELECT * FROM users WHERE username = ?", [username]);
         if (rows.length === 0) return res.status(401).json({ error: "❌ Hibás felhasználónév vagy jelszó" });
 

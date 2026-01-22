@@ -997,15 +997,13 @@ A rugalmasság, áttekinthetőség, könnyű javítás miatt célszerű az egyed
 
 - Implementálj alapvető hibakezelést és biztonsági middleware-t (pl. Helmet).
 
-## Autentikáció és jogosultságkezelés
+## [Hitelesítés és jogosultságkezelés](./71-AuthUser/)
 
 ### Hitelesítés
 
-Tanuld meg, hogyan implementálhatsz hitelesítést (pl. JSON Web Token vagy session alapú hitelesítés).
 
 ### Jogosultságok kezelése
 
-Kezeld a felhasználói jogosultságokat a különböző API végpontokon.
 
 ### Gyakorlat hitelesítésre
 
