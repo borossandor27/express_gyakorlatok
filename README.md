@@ -169,7 +169,7 @@ Milyen típusokon használható, visszatérési érték, mikor használjuk:
 - **find**: Tömbök, elem értéke, első elem keresése adott feltétellel
 - **findIndex**: Tömbök, elem indexe, első elem indexének keresése
 
-# Node.js alapok
+## Node.js alapok
 
 ## Telepítés
 
@@ -178,6 +178,32 @@ A Node.js honlapról le lehet tölteni az alapot. További kiegészítőket vala
 ### [npm](https://www.npmjs.com/package/npm) *(Node Package Manager)*
 
 Az npm egy csomagkezelő, amelyet a Node.js csomagok telepítésére, frissítésére és eltávolítására használnak. Az npm segítségével telepíthetsz csomagokat globálisan vagy lokálisan a projektedben.
+
+#### Lokális vs. globális telepítés
+
+| | Lokális | Globális |
+|---|---|---|
+| **Parancs** | `npm install <csomag>` | `npm install -g <csomag>` |
+| **Hol tárolódik?** | projekt `node_modules/` mappájában | a rendszer npm könyvtárában |
+| **Elérhető** | csak az adott projektből | bárhonnan, parancssorból |
+| **Mikor használd?** | projekt-függőségekhez | parancssori eszközökhöz |
+| **Példa** | `express`, `axios`, `react` | `nodemon`, `typescript`, `pnpm` |
+
+**Lokális telepítés** – a csomag csak az adott projektben érhető el, és bekerül a `package.json` függőségei közé:
+
+```bash
+npm install express
+```
+
+**Globális telepítés** – a csomag az egész rendszeren elérhető lesz, jellemzően parancssori eszközökhöz használatos:
+
+```bash
+npm install -g nodemon
+```
+
+> **Ökölszabály:** Ha egy csomagnévvel parancsot futtatsz a terminálban (pl. `nodemon`, `tsc`, `vite`), globálisan telepítsd. Ha a kódodban importálod (`import express from 'express'`), lokálisan telepítsd.
+
+---
 
 ### yarn *(**Y**et **A**nother **R**esource **N**egotiator)*
 
@@ -189,9 +215,13 @@ A YARN parancssori felülete hasonló az NPM-hez, de néhány különbséggel é
 
 Az npx egy eszköz, amely lehetővé teszi csomagok **futtatását** anélkül, hogy előzetesen telepítenénk őket. Az npx segítségével futtathatsz csomagokat közvetlenül az npm registry-ből, vagy a projektedben lokálisan telepített csomagokat.
 
+> **Mikor érdemes npx-et használni globális telepítés helyett?**  
+> Ha egy eszközt csak egyszer kell futtatni *(pl. projekt inicializáláshoz)*, nem érdemes globálisan telepíteni.  
+> `npx create-react-app` helyett: `npm install -g create-react-app` + `create-react-app`
+
 ### [pnpm](https://www.npmjs.com/package/pnpm) *(Performant Node Package Manager)*
 
-A PNPM a leggyorsabb csomagkezelő, ezt követi a YARN, majd az NPM. Ez azért van, mert a PNPM egy újszerű megközelítést, az úgynevezett `symlinked node_modules`-t használ, amely kemény linkeket hoz létre a csomagok globális tárolójához ahelyett, hogy azokat minden projektbe másolja. Ez lemezterületet takarít meg és csökkenti a duplikációt. A YARN szintén globális gyorsítótárat használ a csomagokhoz, de továbbra is minden projektbe másolja azokat. Az NPM nem használ semmilyen gyorsítótárazási mechanizmust, így minden csomagot letölt és telepít minden alkalommal.
+A PNPM a leggyorsabb csomagkezelő, ezt követi a YARN, majd az NPM. Ez azért van, mert a PNPM egy újszerű megközelítést, az úgynevezett `symlinked node_modules`-t használja, amely kemény linkeket hoz létre a csomagok globális tárolójához ahelyett, hogy azokat minden projektbe másolja. Ez lemezterületet takarít meg és csökkenti a duplikációt. A YARN szintén globális gyorsítótárat használ a csomagokhoz, de továbbra is minden projektbe másolja azokat. Az NPM nem használ semmilyen gyorsítótárazási mechanizmust, így minden csomagot letölt és telepít minden alkalommal.
 
 - **Központi tárolás** *(Content-Addressable Store)*: Amikor először telepít egy csomagot (pl. lodash), a pnpm elmenti azt a lemezen egy egyetlen, megosztott, globális tárolóba. Ez a tároló a gépén található *(általában a felhasználói mappában)*, és a hash-címe alapján azonosítja a csomagot.
 
@@ -199,11 +229,11 @@ A PNPM a leggyorsabb csomagkezelő, ezt követi a YARN, majd az NPM. Ez azért v
 
 - **Helytakarékosság**: Mivel a hard linkek csak mutatók az eredeti fájlokra, nem foglalnak el extra lemezterületet. Ha 100 különböző projekt használja ugyanazt a csomagverziót, az a lemezen csak egyszer lesz tárolva!
 
-telepítése:
+Telepítése:
 
-  ```bash
-  npm install -g pnpm
-  ```
+```bash
+npm install -g pnpm
+```
 
 ## Modulok közötti hivatkozások
 
